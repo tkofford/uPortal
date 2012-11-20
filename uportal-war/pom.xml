@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.jasig.portal</groupId>
         <artifactId>uportal-parent</artifactId>
-        <version>4.0.7</version>
+        <version>4.0.8</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -296,6 +296,11 @@
         </dependency>
         
         <dependency>
+            <groupId>org.jgroups</groupId>
+            <artifactId>jgroups</artifactId>
+        </dependency>
+    
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
@@ -499,7 +504,7 @@
         
         <dependency>
             <groupId>org.jasig.ehcache</groupId>
-                <artifactId>ehcache-jgroups3replication</artifactId>
+            <artifactId>ehcache-jgroups3replication</artifactId>
             <scope>runtime</scope>
         </dependency>
         

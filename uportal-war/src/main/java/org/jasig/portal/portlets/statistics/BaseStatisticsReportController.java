@@ -37,6 +37,7 @@ import org.jasig.portal.events.aggr.BaseAggregationDateTimeComparator;
 import org.jasig.portal.events.aggr.BaseAggregationKey;
 import org.jasig.portal.events.aggr.groups.AggregatedGroupLookupDao;
 import org.jasig.portal.events.aggr.groups.AggregatedGroupMapping;
+import org.jasig.portal.events.aggr.groups.AggregatedGroupMappingNameComparator;
 import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
@@ -49,7 +50,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.portlet.ModelAndView;
 
-import AggregatedGroupMapping.AggregatedGroupMappingNameComparator;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterators;
@@ -119,7 +119,11 @@ public abstract class BaseStatisticsReportController<T extends BaseAggregation<K
      */
     @ModelAttribute("intervals")
     public final Set<AggregationInterval> getIntervals() {
-        return this.getBaseAggregationDao().getAggregationIntervals();
+        final Set<AggregationInterval> intervals = this.getBaseAggregationDao().getAggregationIntervals();
+        
+        final Set<AggregationInterval> sortedIntervals = new TreeSet<AggregationInterval>();
+        sortedIntervals.addAll(intervals);
+        return sortedIntervals;
     }
     
     /**
@@ -128,7 +132,11 @@ public abstract class BaseStatisticsReportController<T extends BaseAggregation<K
      */
     @ModelAttribute("groups")
     public Set<AggregatedGroupMapping> getGroups() {
-        return this.getBaseAggregationDao().getAggregatedGroupMappings();
+        final Set<AggregatedGroupMapping> groupMappings = this.getBaseAggregationDao().getAggregatedGroupMappings();
+        
+        final Set<AggregatedGroupMapping> sortedGroupMappings = new TreeSet<AggregatedGroupMapping>(AggregatedGroupMappingNameComparator.INSTANCE);
+        sortedGroupMappings.addAll(groupMappings);
+        return sortedGroupMappings;
     }
     
     /**
@@ -161,9 +169,9 @@ public abstract class BaseStatisticsReportController<T extends BaseAggregation<K
      * Set the groups to have selected by default
      */
     protected void setReportFormGroups(final F report) {
-        final List<Long> groups = report.getGroups();
-        for (final AggregatedGroupMapping group : this.getGroups()) {
-            groups.add(group.getId());
+        final Set<AggregatedGroupMapping> groups = this.getGroups();
+        if (!groups.isEmpty()) {
+            report.getGroups().add(groups.iterator().next().getId());
         }
     }
     

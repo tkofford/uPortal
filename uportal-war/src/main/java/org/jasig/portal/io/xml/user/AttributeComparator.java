@@ -16,20 +16,23 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package AggregatedGroupMapping;
+package org.jasig.portal.io.xml.user;
 
-import java.util.Comparator;
-
-import org.jasig.portal.events.aggr.groups.AggregatedGroupMapping;
 import org.jasig.portal.utils.ComparableExtractingComparator;
 
-public class AggregatedGroupMappingNameComparator extends
-        ComparableExtractingComparator<AggregatedGroupMapping, String> {
+/**
+ * Compare AttributeComparator instances
+ * 
+ * @author Eric Dalquist
+ */
+public class AttributeComparator extends ComparableExtractingComparator<Attribute, String> {
+    public static final AttributeComparator INSTANCE = new AttributeComparator();
     
-    public static Comparator<AggregatedGroupMapping> INSTANCE = new AggregatedGroupMappingNameComparator();
-
+    private AttributeComparator() {
+    }
+    
     @Override
-    protected String getComparable(AggregatedGroupMapping o) {
-        return o.getGroupName();
+    protected String getComparable(Attribute o) {
+        return o.getName();
     }
 }
