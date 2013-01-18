@@ -39,7 +39,7 @@
      | Provides the default username attribute to use to the rest of the DAOs
      +-->
     <bean id="usernameAttributeProvider" class="org.jasig.services.persondir.support.SimpleUsernameAttributeProvider">
-        <property name="usernameAttribute" value="username" />
+        <property name="usernameAttribute" value="uid" />
     </bean>
     
     
@@ -151,9 +151,205 @@
                         <ref bean="uPortalAccountUserSource" />
                         <ref bean="uPortalJdbcUserSource" />
                         <!-- ADDITIONAL ATTRIBUTE SOURCES GET ADDED HERE -->
+                        <ref bean="uPortalLdapAttributeSource"/>
                     </list>
                 </property>
             </bean>
+        </property>
+    </bean>
+
+    <!-- Main LDAP Attribute Mapping Source -->
+    <bean id="uPortalLdapAttributeSource" class="org.jasig.services.persondir.support.ldap.LdapPersonAttributeDao">
+        <property name="contextSource" ref="defaultLdapContext" />
+        <property name="usernameAttributeProvider" ref="usernameAttributeProvider" />
+        <property name="baseDN" value="ou=people,dc=ku,dc=edu" />
+        <property name="queryAttributeMapping">
+            <map>
+                <entry key="uid" value="uid" />
+                <entry key="username" value="uid" />
+            </map>
+        </property>
+        <property name="resultAttributeMapping">
+            <map>
+                <entry key="eduPersonAffiliation">
+                    <value>eduPersonAffiliation</value>
+                </entry>
+                <entry key="eduPersonNickname">
+                    <value>eduPersonNickname</value>
+                </entry>
+                <entry key="eduPersonPrimaryAffiliation">
+                    <set>
+                        <value>eduPersonPrimaryAffiliation</value>
+                        <value>uPortalTemplateUserName</value>
+                    </set>
+                </entry>
+                <entry key="eduPersonPrincipalName">
+                    <value>eduPersonPrincipalName</value>
+                </entry>
+                <entry key="c">
+                    <value>c</value>
+                </entry>
+                <entry key="cn">
+                    <value>cn</value>
+                </entry>
+                <entry key="description">
+                    <value>description</value>
+                </entry>
+                <entry key="displayName">
+                    <value>displayName</value>
+                </entry>
+                <entry key="facsimileTelephoneNumber">
+                    <value>facsimileTelephoneNumber</value>
+                </entry>
+                <entry key="homePhone">
+                    <value>homePhone</value>
+                </entry>
+                <entry key="homePostalAddress">
+                    <value>homePostalAddress</value>
+                </entry>
+                <entry key="initials">
+                    <value>initials</value>
+                </entry>
+                <entry key="jpegPhoto">
+                    <value>jpegPhoto</value>
+                </entry>
+                <entry key="l">
+                    <value>l</value>
+                </entry>
+                <entry key="labeledURI">
+                    <value>labeledURI</value>
+                </entry>
+                <entry key="mobile">
+                    <value>mobile</value>
+                </entry>
+                <entry key="o">
+                    <value>o</value>
+                </entry>
+                <entry key="ou">
+                    <value>ou</value>
+                </entry>
+                <entry key="pager">
+                    <value>pager</value>
+                </entry>
+                <entry key="postalAddress">
+                    <value>postalAddress</value>
+                </entry>
+                <entry key="postalCode">
+                    <value>postalCode</value>
+                </entry>
+                <entry key="postOfficeBox">
+                    <value>postOfficeBox</value>
+                </entry>
+                <entry key="preferredLanguage">
+                    <value>preferredLanguage</value>
+                </entry>
+                <entry key="seeAlso">
+                    <value>seeAlso</value>
+                </entry>
+                <entry key="st">
+                    <value>st</value>
+                </entry>
+                <entry key="street">
+                    <value>street</value>
+                </entry>
+                <entry key="telephoneNumber">
+                    <value>telephoneNumber</value>
+                </entry>
+                <entry key="uid">
+                    <set>
+                        <value>uid</value>
+                        <value>username</value>
+                        <value>user.login.id</value>
+                    </set>
+                </entry>
+                <entry key="userCertificate">
+                    <value>userCertificate</value>
+                </entry>
+                <entry key="userSMIMECertificate">
+                    <value>userSMIMECertificate</value>
+                </entry>
+                <entry key="eduPersonOrgDN">
+                    <set>
+                        <value>user.employer</value>
+                        <value>eduPersonOrgDN</value>
+                    </set>
+                </entry>
+                <entry key="eduPersonOrgUnitDN">
+                    <set>
+                        <value>user.department</value>
+                        <value>eduPersonOrgUnitDN</value>
+                    </set>
+                </entry>
+                <entry key="givenName">
+                    <set>
+                        <value>user.name.given</value>
+                        <value>givenName</value>
+                    </set>
+                </entry>
+                <entry key="sn">
+                    <set>
+                        <value>user.name.family</value>
+                        <value>sn</value>
+                    </set>
+                </entry>
+                <entry key="eduPersonNickname">
+                    <set>
+                        <value>user.name.nickName</value>
+                        <value>eduPersonNickname</value>
+                    </set>
+                </entry>
+                <entry key="mail">
+                    <set>
+                        <value>mail</value>
+                        <value>user.home-info.online.email</value>
+                    </set>
+                </entry>
+                <entry key="kuPersonCardIsoNumber">
+                    <value>kuPersonCardIsoNumber</value>
+                </entry>
+                <entry key="kuPersonStuId">
+                    <value>EmplID</value>
+                </entry>
+                <entry key="kuPersonAffiliation">
+                    <value>kuPersonAffiliation</value>
+                </entry>
+                <entry key="kuPersonPrimaryAffiliation">
+                    <value>kuPersonPrimaryAffiliation</value>
+                </entry>
+                <entry key="kuPersonStuProgram">
+                    <value>kuPersonStuProgram</value>
+                </entry>
+                <entry key="kuPersonStuAcademicGroup">
+                    <value>kuPersonStuAcademicGroup</value>
+                </entry>
+                <entry key="kuPersonStuCareer">
+                    <value>kuPersonStuCareer</value>
+                </entry>
+                <entry key="kuPersonStuPlan">
+                    <value>kuPersonStuPlan</value>
+                </entry>
+                <entry key="kuPersonStuCampusAddress">
+                    <value>kuPersonStuCampusAddress</value>
+                </entry>
+                <entry key="kuPersonStuFirstYearFreshman">
+                    <value>kuPersonStuFirstYearFreshman</value>
+                </entry>
+                <entry key="isMemberOf">
+                    <value>isMemberOf</value>
+                </entry>
+                <entry key="kuPersonStuLevel">
+                    <value>kuPersonStuLevel</value>
+                </entry>
+                <entry key="kuPersonLHrId">
+                    <value>kuPersonLHrId</value>
+                </entry>
+                <entry key="kuPersonStuDPPSchools">
+                    <value>kuPersonStuDPPSchools</value>
+                </entry>
+                <entry key="kuPersonStuGroups">
+                    <value>kuPersonStuGroups</value>
+                </entry>
+            </map>
         </property>
     </bean>
 

@@ -56,7 +56,6 @@
      | Example LDAP Server Configuration for LDAP person attribute lookups
      +-->
     <!-- Declare the standard spring-ldap ContextSource objects to define LDAP server connections -->
-    <!-- 
     <bean id="defaultLdapContext" class="org.springframework.ldap.pool.factory.PoolingContextSource">
         <property name="contextSource" ref="defaultLdapContext_target"/>
         <property name="dirContextValidator">
@@ -88,6 +87,18 @@
         <property name="userDn" value="${ldap.userName}"/>
         <property name="password" value="${ldap.password}"/>
         <property name="pooled" value="false"/>
+        <property name="baseEnvironmentProperties">
+            <map>
+                <entry>
+                    <key>
+                        <value>java.naming.security.authentication</value>
+                    </key>
+                    <value>simple</value>
+                </entry>
+                <entry key="java.naming.referral">
+                    <value>follow</value>
+                </entry>
+            </map>
+        </property>
     </bean>
-    -->
 </beans>

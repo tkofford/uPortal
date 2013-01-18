@@ -60,6 +60,7 @@
     <group-description>Root group for all PAGS groups.  Convenience for adding PAGS groups to a local group.</group-description>
     <members>
       <member-key>all_users</member-key>
+      <member-key>KYouPortalAdmin</member-key>
     </members>
   </group>
 
@@ -157,7 +158,24 @@
   </group>
  -->
 
-
+<!--
+  Group: "KYouPortalAdmin"
+-->
+  <group>
+    <group-key>KYouPortalAdmin</group-key>
+    <group-name>KYouPortalAdmin</group-name>
+    <group-description>KYou Portal Administrators</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>isMemberOf</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsTester</tester-class>
+          <test-value>cn=itsimembers,ou=groups,dc=ku,dc=edu</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+  
 <!-- End Group declarations: -->
 
 </Group-Store>

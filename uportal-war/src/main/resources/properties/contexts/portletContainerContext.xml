@@ -107,11 +107,11 @@
     
     <bean id="casTicketUserInfoService" class="org.jasig.portal.portlet.container.services.CasTicketUserInfoService" />
     
-    <!--bean id="cachedPasswordUserInfoService" 
+    <bean id="cachedPasswordUserInfoService" 
         class="org.jasig.portal.portlet.container.services.CachedPasswordUserInfoService">
         <property name="decryptPassword" value="false"/>
-    </bean-->
-    
+    </bean>
+
     <bean id="portalAdministrationService" class="org.apache.pluto.driver.container.DefaultPortalAdministrationService">
     	<property name="administrativeRequestListeners">
     		<list>

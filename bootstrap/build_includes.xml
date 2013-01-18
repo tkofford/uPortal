@@ -26,7 +26,7 @@
         <condition>
             <not>
             	<or>
-            	    <antversion exactly="1.8.2"/>
+            	    <antversion exactly="1.8.4"/>
             	</or>
             </not>
         </condition>

@@ -88,10 +88,17 @@
         <project-site-path>/uportal/${project.version}</project-site-path>
         
         <!-- The JDBC Driver used by uPortal -->
+        <!-- hsqldb settings -->
+        <!--
         <jdbc.groupId>org.hsqldb</jdbc.groupId>
         <jdbc.artifactId>hsqldb</jdbc.artifactId>
         <jdbc.version>${hsqldb.version}</jdbc.version>
-    
+         -->
+
+        <!-- Oracle driver settings -->
+        <jdbc.groupId>com.oracle</jdbc.groupId>
+        <jdbc.artifactId>ojdbc6</jdbc.artifactId>
+        <jdbc.version>11.2.0.1.0</jdbc.version>
         <!--
          | Environment name and filters file for environment-specific build
          | settings.  By default <environment.name> is blank, and the filters 
