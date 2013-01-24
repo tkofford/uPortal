@@ -1,5 +1,5 @@
 # Import the KU defined PAGS group "KYouPortalAdmin" into the default "Portal Administrators" group.
-ant data-import -Dfile=/data/todd/dev/workspaces/workspace-prod/uPortal4/uPortal/local/data/entities/Portal_Administrators.group-membership.xml
+ant data-import -Dfile=local/data/entities/Portal_Administrators.group-membership.xml
 
 # Give the PAGS group "KYouPortalAdmin" the "Admin" layout wich included the "Admin Tools" tab
-ant data-import -Dfile=/data/todd/dev/workspaces/workspace-prod/uPortal4/uPortal/local/data/entities/Admin.fragment-definition.xml
+ant data-import -Dfile=local/data/entities/Admin.fragment-definition.xml
