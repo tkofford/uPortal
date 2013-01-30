@@ -75,15 +75,15 @@
 /* Reset: mist theme. */
 .fl-theme-mist .fl-tabs {border: none; border-bottom: none; margin: 0; padding-bottom: 0;}
 .fl-theme-mist .fl-tabs li,
-.fl-theme-mist .fl-tabs li a {font-weight: bold; border: none; background-color: transparent; color: #555555;}
-.fl-theme-mist .fl-tabs li a:hover {background-color: transparent; color: #222222;}
+.fl-theme-mist .fl-tabs li a {font-weight: bold; border: none; background-color: #e2e8e7; color: #336699;}
+.fl-theme-mist .fl-tabs li a:hover {background-color: #5a95cf; color: white;}
 .fl-theme-mist .fl-tabs li.fl-activeTab,
 .fl-theme-mist .fl-tabs li.fl-activeTab:hover,
 .fl-theme-mist .fl-tabs li.fl-activeTab a,
 .fl-theme-mist .fl-tabs li.fl-activeTab a:hover,
 .fl-theme-mist .fl-tabs li.fl-tabs-active,
-.fl-theme-mist .fl-tabs li.fl-tabs-active a,
-.fl-theme-mist .fl-tabs li.fl-tabs-active a:hover {background-color: transparent; color: #222222;}
+.fl-theme-mist .fl-tabs li.fl-tabs-active a {background-color: #e2e8e7; color: #336699;}
+.fl-theme-mist .fl-tabs li.fl-tabs-active a:hover {background-color: #5a95cf; color: #white;}
 .fl-theme-mist .fl-tabs-content {background-color: transparent; border: none; margin-top: 0;}
 
 

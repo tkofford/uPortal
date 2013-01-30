@@ -21,6 +21,15 @@
 -->
 
 <skins>
+	<skin>
+	    <skin-key>ku</skin-key>
+	    <skin-name>KU Portal</skin-name>
+	    <skin-description>
+	    	KU custom skin.
+	    </skin-description>
+  	</skin>
+  
+
     <skin>
         <skin-key>uportal3</skin-key>
         <skin-name>uPortal 4</skin-name>
@@ -52,5 +61,7 @@
             High contrast black and white.
         </skin-description>
     </skin>
+     
+     
 </skins>
 
