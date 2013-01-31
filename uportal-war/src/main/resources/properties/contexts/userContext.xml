@@ -53,9 +53,9 @@
         p:mappings-ref="profileKeyMappings"/>
     
     
-<!--     <bean id="userAgentProfileMapper" class="org.jasig.portal.layout.UserAgentProfileMapper"> -->
-<!--         <property name="mappings"> -->
-<!--             <list> -->
+    <bean id="userAgentProfileMapper" class="org.jasig.portal.layout.UserAgentProfileMapper">
+        <property name="mappings">
+            <list>
                 <!-- Apple iPad -->
 <!--                 <bean class="org.jasig.portal.layout.UserAgentProfileMapper.Mapping"> -->
 <!--                     <property name="pattern" value=".*iPad.*" /> -->
@@ -101,9 +101,9 @@
 <!--                     <property name="pattern" value=".*IEMobile.*" /> -->
 <!--                     <property name="profileName" value="mobileDefault" /> -->
 <!--                 </bean> -->
-<!--             </list> -->
-<!--         </property> -->
-<!--     </bean> -->
+            </list>
+        </property>
+    </bean>
     
 
     <!-- The following attribute names are used in searching for users through 
