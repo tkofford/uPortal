@@ -245,7 +245,7 @@
    | Navigation Settings can be used to change the navigation.
   -->
   <xsl:param name="USE_FLYOUT_MENUS" select="'true'" /> <!-- Sets the use of flyout menus.  Values are 'true' or 'false'. -->
-  <xsl:param name="USE_ADD_TAB" select="'true'" /> <!-- Sets the use of a "+" button at the end of the tab list for adding a new tab.  Values are 'true' or 'false'. -->
+  <xsl:param name="USE_ADD_TAB" select="'false'" /> <!-- Sets the use of a "+" button at the end of the tab list for adding a new tab.  Values are 'true' or 'false'. -->
   <xsl:param name="TAB_CONTEXT">header</xsl:param><!-- Sets the location of the navigation. Values are 'header' or 'sidebar'. -->
   
   <!-- USE_SUBNAVIGATION_ROW
@@ -424,8 +424,8 @@
    | Template contents can be any valid XSL or XHTML.
   -->
   <xsl:template name="header.block">
-  	<!-- Portal Page Bar -->
-    <xsl:call-template name="portal.page.bar"/>
+  	<!-- Portal Page Bar 
+    <xsl:call-template name="portal.page.bar"/> -->
     
     <!-- Skip Navigation -->
     <xsl:call-template name="skip.nav"/>
@@ -472,27 +472,35 @@
    | Template contents can be any valid XSL or XHTML.
   -->
   <xsl:template name="portal.page.bar.links.block">
-  	<!-- Home Link -->
-  	<xsl:call-template name="portal.page.bar.link.home" />
-    <!-- Home Link -->
-    
-    <!-- Admin Link -->
-    <xsl:if test="$INSTITUTION != 'uportal'">
-  		<xsl:call-template name="portal.page.bar.link.admin" />
-    </xsl:if>
-    <!-- Admin Link -->
-    
-    <!-- Sitemap Link -->
-  	<xsl:call-template name="portal.page.bar.link.sitemap" />
-    <!-- Sitemap Link -->
-    
-    <!-- Help Link -->
-  	<xsl:call-template name="portal.page.bar.link.help" />
-    <!-- Help Link -->
-    
-    <!-- Logout Link -->
-  	<xsl:call-template name="portal.page.bar.link.logout" />
-    <!-- Logout Link -->
+  	<span id="portalPageBarLinks">
+      	<ul class="utilities">
+		  	<!-- Home Link -->
+		  	<xsl:call-template name="portal.page.bar.link.home" />
+		    
+		    <!-- Admin Link -->
+		    <xsl:if test="$INSTITUTION != 'uportal'">
+		  		<xsl:call-template name="portal.page.bar.link.admin" />
+		    </xsl:if>
+		    
+		    <!-- Email Link -->
+		  	<xsl:call-template name="portal.page.bar.link.email"/>
+		  	
+		  	<!-- Blackboard Link -->
+		  	<xsl:call-template name="portal.page.bar.link.blackboard"/>
+		  	
+		  	<!-- Enroll & Pay Link -->
+		  	<xsl:call-template name="portal.page.bar.link.enrollpay"/>
+		    
+		    <!-- Sitemap Link 
+		  	<xsl:call-template name="portal.page.bar.link.sitemap" />-->
+		    <!-- Help Link 
+		  	<xsl:call-template name="portal.page.bar.link.help" />-->
+		    
+		    <!-- Logout Link -->
+		  	<xsl:call-template name="portal.page.bar.link.logout" />
+		    
+		</ul>
+	</span>
     
   </xsl:template>
   <!-- =========================================================== -->
@@ -506,9 +514,9 @@
    | Template contents can be any valid XSL or XHTML.
   -->
   <xsl:template name="logo.block">
-  	<img src="{$SKIN_PATH}/images/portal_logo.png" alt="{upMsg:getMessage('portal.page.title', $USER_LANG)}"/>
-    <!-- Text only: 
-    <span><xsl:value-of select="upMsg:getMessage('portal.page.title', $USER_LANG)"/></span> -->
+  	<!-- <img src="{$SKIN_PATH}/images/miniheader_logo.gif" alt="{upMsg:getMessage('portal.page.title', $USER_LANG)}"/>  -->
+    <!-- Text only: -->
+    <span class="noUnderlineWhiteLink"><xsl:value-of select="upMsg:getMessage('portal.page.title', $USER_LANG)"/></span> 
   </xsl:template>
   <!-- ========================================== -->
   
@@ -521,14 +529,17 @@
    | Template contents can be any valid XSL or XHTML.
   -->
   <xsl:template name="header.focused.block">
-    <!-- Portal Page Bar -->
-    <xsl:call-template name="portal.page.bar"/>
+    <!-- Portal Page Bar 
+    <xsl:call-template name="portal.page.bar"/> -->
     
     <!-- Skip Navigation -->
     <xsl:call-template name="skip.nav"/>
     
     <!-- Logo -->
     <xsl:call-template name="logo"/>
+    
+    <!-- Web Search -->
+    <xsl:call-template name="web.search"/>
     
     <!-- SAMPLE:
     <div id="portalHeaderFocusedBlock">
@@ -561,25 +572,35 @@
    | Template contents can be any valid XSL or XHTML.
   -->
   <xsl:template name="portal.page.bar.links.focused.block">
-  	<!-- Home Link -->
-  	<xsl:call-template name="portal.page.bar.link.home"/>
-    <!-- Home Link -->
-    
-    <!-- Admin Link
-  	<xsl:call-template name="portal.page.bar.link.admin"/> -->
-    <!-- Admin Link -->
-    
-    <!-- Sitemap Link
-  	<xsl:call-template name="portal.page.bar.link.sitemap"/> -->
-    <!-- Sitemap Link -->
-    
-    <!-- Help Link -->
-  	<xsl:call-template name="portal.page.bar.link.help" />
-    <!-- Help Link -->
-    
-    <!-- Logout Link -->
-  	<xsl:call-template name="portal.page.bar.link.logout" />
-    <!-- Logout Link -->
+  	<span id="portalPageBarLinks">
+      	<ul class="utilities">
+		  	<!-- Home Link -->
+		  	<xsl:call-template name="portal.page.bar.link.home"/>
+		    
+		    
+		    <!-- Email Link -->
+		  	<xsl:call-template name="portal.page.bar.link.email"/>
+		  	
+		  	<!-- Blackboard Link -->
+		  	<xsl:call-template name="portal.page.bar.link.blackboard"/>
+		  	
+		  	<!-- Enroll & Pay Link -->
+		  	<xsl:call-template name="portal.page.bar.link.enrollpay"/>
+		    
+		    
+		    <!-- Admin Link
+		  	<xsl:call-template name="portal.page.bar.link.admin"/> -->
+		    <!-- Sitemap Link
+		  	<xsl:call-template name="portal.page.bar.link.sitemap"/> -->
+		    <!-- Help Link
+		  	<xsl:call-template name="portal.page.bar.link.help" /> -->
+		
+		    
+		    <!-- Logout Link -->
+		  	<xsl:call-template name="portal.page.bar.link.logout" />
+  		</ul>
+  	</span>
+
   </xsl:template>
   <!-- =================================================================== -->
   
@@ -592,9 +613,9 @@
    | Template contents can be any valid XSL or XHTML.
   -->
   <xsl:template name="logo.focused.block">
-  	<img src="{$SKIN_PATH}/images/portal_logo.png" alt="{upMsg:getMessage('portal.page.title', $USER_LANG)}"/>
-  	<!-- Text:
-    <span><xsl:value-of select="upMsg:getMessage('portal.page.title', $USER_LANG)"/></span> -->
+  	<!-- <img src="{$SKIN_PATH}/images/miniheader_logo.gif" alt="{upMsg:getMessage('portal.page.title', $USER_LANG)}"/> -->
+  	<!-- Text: -->
+    <span class="noUnderlineWhiteLink"><xsl:value-of select="upMsg:getMessage('portal.page.title', $USER_LANG)"/></span>
     <!-- Slim version of logo:
     <img src="{$SKIN_PATH}/images/portal_logo_slim.png" alt="{upMsg:getMessage('portal.page.title', $USER_LANG)}"/>  -->
   </xsl:template>

@@ -83,6 +83,7 @@
   <!-- =============================================== -->
   <!--
    | This template renders the portal page bar.
+   Not called any more? (Allan Jackson)
   -->
   <xsl:template name="portal.page.bar">  
     <div id="portalPageBar">
@@ -99,7 +100,7 @@
         </xsl:otherwise>
       </xsl:choose>
       <chunk-point/> <!-- Performance Optimization, see ChunkPointPlaceholderEventSource -->
-      <div id="portalPageBarLinks">
+      <span id="portalPageBarLinks">
       	<ul class="utilities">
 	      	<xsl:choose>
 	          <xsl:when test="//focused">
@@ -114,7 +115,7 @@
 	          </xsl:otherwise>
 	        </xsl:choose>
         </ul>
-      </div>
+      </span>
       <chunk-point/> <!-- Performance Optimization, see ChunkPointPlaceholderEventSource -->
     </div>
   </xsl:template>
@@ -153,7 +154,7 @@
           <xsl:variable name="homeUrl">
             <xsl:call-template name="portalUrl"/>
           </xsl:variable>
-	      <a href="{$homeUrl}">
+	      <a href="{$homeUrl}" class="noUnderlineWhiteLink">
 	        <xsl:attribute name="title">
 	          <xsl:choose>
 	            <!-- Use the Back to Home label for focused view -->
@@ -162,7 +163,7 @@
 	            <xsl:otherwise><xsl:value-of select="upMsg:getMessage('home', $USER_LANG)"/></xsl:otherwise>
 	          </xsl:choose>
 	        </xsl:attribute>
-	        <span>
+	        <span class="noUnderlineWhiteLink">
 	          <xsl:choose>
 	            <!-- Use the Back to Home label for focused view -->
 	            <xsl:when test="//focused"><xsl:value-of select="upMsg:getMessage('back.to.home.long', $USER_LANG)"/></xsl:when>
@@ -195,7 +196,7 @@
             </xsl:call-template>
     	  </xsl:variable>
     	  <a href="{$portletAdminUrl}" title="{upMsg:getMessage('go.to.portlet.manager', $USER_LANG)}">
-          <span><xsl:value-of select="upMsg:getMessage('portlet.manager', $USER_LANG)"/></span>
+          <span class="noUnderlineWhiteLink"><xsl:value-of select="upMsg:getMessage('portlet.manager', $USER_LANG)"/></span>
         </a>
       </li>
     </xsl:if>
@@ -235,6 +236,51 @@
   <!-- ========================================================= -->
   
   
+  <!-- ========== TEMPLATE: PORTAL PAGE BAR LINK EMAIL ========== -->
+  <!-- ========================================================= -->
+  <!--
+   | This template renders the email link into the portal page bar.
+  -->
+  <xsl:template name="portal.page.bar.link.email">
+  	<li>
+      <a href="https://mail.ku.edu" title="Check your email online" class="noUnderlineWhiteLink">
+      	<span class="noUnderlineWhiteLink">Email</span>
+      </a>
+    </li>
+  </xsl:template>
+  <!-- ========================================================= -->
+  
+  
+  <!-- ========== TEMPLATE: PORTAL PAGE BAR LINK BLACKBOARD ========== -->
+  <!-- ========================================================= -->
+  <!--
+   | This template renders the blackboard link into the portal page bar.
+  -->
+  <xsl:template name="portal.page.bar.link.blackboard">
+  	<li>
+      <a href="https://courseware.ku.edu/" title="Login to Blackboard" class="noUnderlineWhiteLink">
+      	<span class="noUnderlineWhiteLink">Blackboard</span>
+      </a>
+    </li>
+  </xsl:template>
+  <!-- ========================================================= -->
+  
+  
+  <!-- ========== TEMPLATE: PORTAL PAGE BAR LINK ENROLL & PAY ========== -->
+  <!-- ========================================================= -->
+  <!--
+   | This template renders the E&P link into the portal page bar.
+  -->
+  <xsl:template name="portal.page.bar.link.enrollpay">
+  	<li>
+      <a href="https://sa.ku.edu" title="Login to Enroll &amp; Pay" class="noUnderlineWhiteLink">
+      	<span class="noUnderlineWhiteLink">Enroll &amp; Pay</span>
+      </a>
+    </li>
+  </xsl:template>
+  <!-- ========================================================= -->
+  
+  
   <!-- ========== TEMPLATE: PORTAL PAGE BAR LINK LOGOUT ========== -->
   <!-- ========================================================= -->
   <!--
@@ -243,8 +289,8 @@
   <xsl:template name="portal.page.bar.link.logout">
     <xsl:if test="$AUTHENTICATED='true'">
      <li class="link-logout">
-        <a href="{$CONTEXT_PATH}/Logout" title="{upMsg:getMessage('log.off.and.exit', $USER_LANG)}">
-          <span><xsl:value-of select="upMsg:getMessage('sign.out', $USER_LANG)"/></span>
+        <a href="{$CONTEXT_PATH}/Logout" class="noUnderlineWhiteLink" title="{upMsg:getMessage('log.off.and.exit', $USER_LANG)}">
+          <span class="noUnderlineWhiteLink"><xsl:value-of select="upMsg:getMessage('sign.out', $USER_LANG)"/></span>
         </a>
       </li>
     </xsl:if>
@@ -262,20 +308,30 @@
       <xsl:variable name="homeUrl">
         <xsl:call-template name="portalUrl"/>
       </xsl:variable>
-      <a href="{$homeUrl}" title="{upMsg:getMessage('go.to.home', $USER_LANG)}">
+      <a href="http://www.ku.edu" class="noUnderlineWhiteLink">
         <xsl:choose>
           <xsl:when test="//focused">
             <!-- ****** LOGO FOCUSED BLOCK ****** -->
             <xsl:call-template name="logo.focused.block"/> <!-- Calls a template of institution custom content from universality.xsl. -->
-            <!-- ****** LOGO FOCUSED BLOCK ****** -->
           </xsl:when>
           <xsl:otherwise>
             <!-- ****** LOGO BLOCK ****** -->
             <xsl:call-template name="logo.block"/> <!-- Calls a template of institution custom content from universality.xsl. -->
-            <!-- ****** LOGO BLOCK ****** -->
           </xsl:otherwise>
         </xsl:choose>
       </a>
+      
+      <xsl:choose>
+        <xsl:when test="//focused">	
+			<!-- Links -->
+			<xsl:call-template name="portal.page.bar.links.focused.block"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <!-- Links -->
+    	  <xsl:call-template name="portal.page.bar.links.block"/>
+        </xsl:otherwise>
+      </xsl:choose>
+  
     </div>
   </xsl:template>
   <!-- ==================================== -->
