@@ -56,12 +56,6 @@ PORTLET DEVELOPMENT STANDARDS AND GUIDELINES
       <option value="90">90</option>
       <option value="365">365</option>
     </select>
-    <spring:message code="days"/>
-    <c:if test="${showAdminFeatures}">
-      <spring:message code="from"/>
-      <input id="${n}fromDate" name="fromDate" type="text" class="cal-datepicker" value="<spring:message code="today"/>"/>
-      <spring:message code="inclusive"/>
-    </c:if>
   </div> <!-- end: portlet-toolbar -->
         
 	<!-- Portlet Body -->
@@ -137,12 +131,13 @@ PORTLET DEVELOPMENT STANDARDS AND GUIDELINES
 
 </form>
 </div> <!-- end: portlet -->
-    	
+<span class="label">* These values are provided by daily statistics aggregation</span>
+<portlet:resourceURL id="popularPortletCounts" var="popularPortletCountsUrl" />
 <script type="text/javascript">
 up.jQuery(function() {
 
     var $ = up.jQuery;
-    var portletDeepLinkUrl = '<c:url value="/render.userLayoutRootNode.uP?uP_fname=PORTLETFNAME"/>';
+    var portletDeepLinkUrl = '<c:url value="/p/PORTLETFNAME"/>';
     var pager;
 
     var fetchStats = function() {
@@ -151,16 +146,16 @@ up.jQuery(function() {
         $("#${n}loadingMessage").slideDown(500);
 
         $.ajax({
-            url: '<c:url value="/api/userLayoutModificationsCounts"/>',
+            url: '${popularPortletCountsUrl}',
             async: false,
             data: $("#${n}form").serialize(),
-            type: 'POST',
+            type: 'GET',
             dataType: "json",
             success: function(data) { 
                 counts = data.counts; 
             },
             error: function(request, textStatus, error) {
-                alert("ERROR:  " + textStatus); 
+                alert("ERROR:  " + textStatus);
             }
         });
         
