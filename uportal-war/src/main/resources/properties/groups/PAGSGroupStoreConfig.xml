@@ -49,27 +49,36 @@
 
 <!-- Group declarations: -->
 
-<!--
-  Group pags_root: "PAGS Root"
-  IMPORTANT: The PAGS Root group is REQUIRED for uPortal to function. It Must be a member of the Everyone group in the
-  local group store
--->
+  <!--
+    Group pags_root: "PAGS Root"
+    IMPORTANT: The PAGS Root group is REQUIRED for uPortal to function. It Must be a member of the Everyone group in the
+    local group store
+  -->
   <group>
     <group-key>pags_root</group-key>
     <group-name>PAGS Root</group-name>
     <group-description>Root group for all PAGS groups.  Convenience for adding PAGS groups to a local group.</group-description>
     <members>
       <member-key>all_users</member-key>
+      <member-key>all_students</member-key>
+      <member-key>all_faculty</member-key>
+      <member-key>all_staff</member-key>
+      <member-key>DefaultUser</member-key>
       <member-key>KYouPortalAdmin</member-key>
+      <member-key>ParkingAdmin</member-key>
+      <member-key>PtDExceptionUsers</member-key>
+      <member-key>CommerceMgrAdmin</member-key>
+      <member-key>all_admitted_students</member-key>
+      <member-key>KuAnywhereUsers</member-key>
+      <member-key>HasEmployeeInfo</member-key>
     </members>
   </group>
 
-
-<!--
-  Group all_users: "All Users (PAGS)"
-  All IPersons are memebers of this group
-  IMPORTANT: The All Users group is REQUIRED for uPortal to function. It Must be a member of the PAGS Root group
--->
+  <!--
+    Group all_users: "All Users (PAGS)"
+    All IPersons are memebers of this group
+    IMPORTANT: The All Users group is REQUIRED for uPortal to function. It Must be a member of the PAGS Root group
+  -->
   <group>
     <group-key>all_users</group-key>
     <group-name>All Users (PAGS)</group-name>
@@ -103,11 +112,11 @@
   <!--==================== Other Examples ====================-->
 
 
-<!--
-  Group 2: "Short First Names"
-  givenName has 5 or fewer characters
--->
-<!-- 
+  <!--
+    Group 2: "Short First Names"
+    givenName has 5 or fewer characters
+  -->
+  <!-- 
   <group>
     <group-key>2</group-key>
     <group-name>Short First Names</group-name>
@@ -125,16 +134,16 @@
       <member-key>3</member-key>
     </members>
   </group>
- -->
+  -->
 
-<!--
-  Group 3: "Ds and Students"
-  givenName starts with D or equals "Student" since the results of the test-group elements are
-  OR-ed together.  HOWEVER, since this group is a member of group 2, members of this group must
-  also qualify as members of group 2, i.e., given name must have 5 or fewer characters.  As a
-  result, Student User should not show up as a member.
--->
-<!-- 
+  <!--
+    Group 3: "Ds and Students"
+    givenName starts with D or equals "Student" since the results of the test-group elements are
+    OR-ed together.  HOWEVER, since this group is a member of group 2, members of this group must
+    also qualify as members of group 2, i.e., given name must have 5 or fewer characters.  As a
+    result, Student User should not show up as a member.
+  -->
+  <!-- 
   <group>
     <group-key>3</group-key>
     <group-name>Ds and Students</group-name>
@@ -156,11 +165,85 @@
       </test-group>
     </selection-test>
   </group>
- -->
+  -->
 
-<!--
-  Group: "KYouPortalAdmin"
--->
+  <!--
+	  Group: "All Students"
+  -->
+  <group>
+    <group-key>all_students</group-key>
+    <group-name>All Students</group-name>
+    <group-description>Group of student groups and includes all users that are considered active students</group-description>
+    <members>
+      <member-key>GraduateResearchAssistant</member-key>
+      <member-key>GraduateTeachingAssistant</member-key>
+      <member-key>KuceStudent</member-key>
+      <member-key>KumcStudent</member-key>
+      <member-key>PreEnrolledStudent</member-key>
+      <member-key>KuStudent</member-key>
+      <member-key>StudentStaff</member-key>
+      <member-key>StudentAthlete</member-key> <!-- Used by the JumpForward portlet -->
+    </members>
+  </group>
+
+  <!--
+    Group: "All Staff"
+  -->
+  <group>
+    <group-key>all_staff</group-key>
+    <group-name>All Staff</group-name>
+    <group-description>Group of staff groups and includes all users that are considered staff</group-description>
+    <members>
+      <member-key>AffiliatedCorporation</member-key>
+      <member-key>KumcStaff</member-key>
+      <member-key>OtherStaff</member-key>
+      <member-key>KuStaff</member-key>
+      <member-key>ReligiousAdvisors</member-key>
+      <member-key>Retiree</member-key>
+      <member-key>UnclassifiedProfessionalStaff</member-key>
+      <member-key>UniversitySupportStaff</member-key>
+      <member-key>UnknownStaff</member-key>
+      <member-key>VisitingScholars</member-key>
+    </members>
+  </group>
+
+  <!--
+    Group: "All Faculty"
+  -->
+  <group>
+    <group-key>all_faculty</group-key>
+    <group-name>All Faculty</group-name>
+    <group-description>Group of faculty groups and includes all users that are considered faculty</group-description>
+    <members>
+      <member-key>AdjunctFaculty</member-key>
+      <member-key>CourtesyFaculty</member-key>
+      <member-key>Emeritus</member-key>
+      <member-key>KuFaculty</member-key>
+      <member-key>UnclassifiedAcademicStaff</member-key>
+    </members>
+  </group>
+
+  <!--
+    Group: "all_admitted_students"
+  -->
+  <group>
+    <group-key>all_admitted_students</group-key>
+    <group-name>All Admitted Students</group-name>
+    <group-description>Group of admitted students groups and includes all users who are considered admitted students</group-description>
+    <members>
+      <member-key>AdmittedStudent</member-key>
+      <member-key>EnrollingStudent</member-key>
+      <!--
+      <member-key>DPPAdmittedStudent</member-key>
+      <member-key>DPPEnrollingStudent</member-key>
+      -->
+    </members>
+  </group>
+
+  <!--
+    Group: "KYouPortalAdmin"
+    isMemberOf Contains "cn=itsimembers"
+  -->
   <group>
     <group-key>KYouPortalAdmin</group-key>
     <group-name>KYouPortalAdmin</group-name>
@@ -176,6 +259,629 @@
     </selection-test>
   </group>
   
+  <!--
+    Group: "Student"
+    kuPersonAffiliation EQ (ignore case) "Student"
+  -->
+  <group>
+    <group-key>KuStudent</group-key>
+    <group-name>KuStudent</group-name>
+    <group-description>KU Students</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>Student</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+
+  <!--
+    Group: "Staff"
+    kuPersonAffiliation EQ (ignore case) "Staff"
+  -->
+  <group>
+    <group-key>KuStaff</group-key>
+    <group-name>KuStaff</group-name>
+    <group-description>KU Staff</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>Staff</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+
+  <!--
+    Group: "Faculty"
+    kuPersonAffiliation EQ (ignore case) "Faculty"
+  -->
+  <group>
+    <group-key>KuFaculty</group-key>
+    <group-name>KuFaculty</group-name>
+    <group-description>KU Faculty</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>Faculty</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+
+  <!--
+    Group: "DefaultUser"
+    Checks that the user at least has a uid, isn't one of the following (AdmittedStudent, OrientationStudent, EnrollingStudent), 
+    and not DPP, if so they're a part of the group.
+  -->
+  <group>
+    <group-key>DefaultUser</group-key>
+    <group-name>DefaultUser</group-name>
+    <group-description>Users who are not (AdmittedStudent, OrientationStudent, EnrollingStudent), and not DPP</group-description>
+    <selection-test>
+      <test-group>
+        <!--                <test>-->
+        <!--                    <attribute-name>uid</attribute-name>-->
+        <!--                    <tester-class>org.jasig.portal.groups.pags.testers.ValueExistsTester</tester-class>-->
+        <!--                    <test-value/>-->
+        <!--                </test>-->
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.RegexTester</tester-class>
+          <test-value>^(?:(?!\b(?:Admitted|Orientation|Enrolling)Student\b).)*$</test-value>
+        </test>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.RegexTester</tester-class>
+          <test-value>^(?!DP).+</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+
+  <!--
+    Group: "GraduateResearchAssistant"
+    kuPersonAffiliation EQ (ignore case) "GraduateResearchAssistant"
+  -->
+  <group>
+    <group-key>GraduateResearchAssistant</group-key>
+    <group-name>GraduateResearchAssistant</group-name>
+    <group-description>GraduateResearchAssistant</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>GraduateResearchAssistant</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+  
+  <!--
+    Group: "GraduateTeachingAssistant" (StudentFaculty)
+    kuPersonAffiliation EQ (ignore case) "GraduateTeachingAssistant"
+  -->
+  <group>
+    <group-key>GraduateTeachingAssistant</group-key>
+    <group-name>GraduateTeachingAssistant</group-name>
+    <group-description>GraduateTeachingAssistant</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>GraduateTeachingAssistant</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+  <!--
+    Group: "KuceStudent"
+    kuPersonAffiliation EQ (ignore case) "KuceStudent"
+  -->
+  <group>
+    <group-key>KuceStudent</group-key>
+    <group-name>KuceStudent</group-name>
+    <group-description>KuceStudent</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>KuceStudent</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+  
+  <!--
+    Group: "KumcStudent"
+    kuPersonAffiliation EQ (ignore case) "KumcStudent"
+  -->
+  <group>
+    <group-key>KumcStudent</group-key>
+    <group-name>KumcStudent</group-name>
+    <group-description>KumcStudent</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>KumcStudent</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+
+  <!--
+    Group: "PreEnrolledStudent"
+    kuPersonAffiliation EQ (ignore case) "PreEnrolledStudent"
+  -->
+  <group>
+    <group-key>PreEnrolledStudent</group-key>
+    <group-name>PreEnrolledStudent</group-name>
+    <group-description>PreEnrolledStudent</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>PreEnrolledStudent</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+  
+  <!--
+    Group: "StudentStaff"
+    kuPersonAffiliation EQ (ignore case) "StudentStaff"
+  -->
+  <group>
+    <group-key>StudentStaff</group-key>
+    <group-name>StudentStaff</group-name>
+    <group-description>StudentStaff</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>StudentStaff</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+  
+  <!--
+    Group: "StudentAthlete"
+    isMemberOf Contains "cn=studentathlete"
+  -->
+  <group>
+    <group-key>StudentAthlete</group-key>
+    <group-name>StudentAthlete</group-name>
+    <group-description>student athletes</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>isMemberOf</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsTester</tester-class>
+          <test-value>cn=studentathlete,ou=groups,dc=ku,dc=edu</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+
+  <!--
+    Group: "AffiliatedCorporation"
+    kuPersonAffiliation EQ (ignore case) "AffiliatedCorporation"
+  -->
+  <group>
+    <group-key>AffiliatedCorporation</group-key>
+    <group-name>AffiliatedCorporation</group-name>
+    <group-description>AffiliatedCorporation</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>AffiliatedCorporation</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+  
+  <!--
+    Group: "KumcStaff"
+    kuPersonAffiliation EQ (ignore case) "KumcStaff"
+  -->
+  <group>
+    <group-key>KumcStaff</group-key>
+    <group-name>KumcStaff</group-name>
+    <group-description>KumcStaff</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>KumcStaff</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+  
+  <!--
+    Group: "OtherStaff"
+    kuPersonAffiliation EQ (ignore case) "OtherStaff"
+  -->
+  <group>
+    <group-key>OtherStaff</group-key>
+    <group-name>OtherStaff</group-name>
+    <group-description>Other miscellaneous staff</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>OtherStaff</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+
+  <!--
+    Group: "ReligiousAdvisors"
+    kuPersonAffiliation EQ (ignore case) "ReligiousAdvisors"
+  -->
+  <group>
+    <group-key>ReligiousAdvisors</group-key>
+    <group-name>ReligiousAdvisors</group-name>
+    <group-description>ReligiousAdvisors</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>ReligiousAdvisors</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+  
+  <!--
+    Group: "Retiree"
+    kuPersonAffiliation EQ (ignore case) "Retiree"
+  -->
+  <group>
+    <group-key>Retiree</group-key>
+    <group-name>Retiree</group-name>
+    <group-description>Retirees</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>Retiree</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+
+  <!--
+    Group: "UnclassifiedProfessionalStaff"
+    kuPersonAffiliation EQ (ignore case) "UnclassifiedProfessionalStaff"
+  -->
+  <group>
+    <group-key>UnclassifiedProfessionalStaff</group-key>
+    <group-name>UnclassifiedProfessionalStaff</group-name>
+    <group-description>Unclassified professional staff</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>UnclassifiedProfessionalStaff</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+  
+  <!--
+    Group: "UniversitySupportStaff"
+    kuPersonAffiliation EQ (ignore case) "Classified"
+  -->
+  <group>
+    <group-key>UniversitySupportStaff</group-key>
+    <group-name>UniversitySupportStaff</group-name>
+    <group-description>University support staff</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>Classified</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+  
+  <!--
+    Group: "UnknownStaff"
+    kuPersonAffiliation EQ (ignore case) "UnknownStaff"
+  -->
+  <group>
+    <group-key>UnknownStaff</group-key>
+    <group-name>UnknownStaff</group-name>
+    <group-description>Unknown staff</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>UnknownStaff</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+  
+  <!--
+    Group: "VisitingScholars"
+    kuPersonAffiliation EQ (ignore case) "VisitingScholars"
+  -->
+  <group>
+    <group-key>VisitingScholars</group-key>
+    <group-name>VisitingScholars</group-name>
+    <group-description>Visiting scholars</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>VisitingScholars</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+
+  <!--
+    Group: "AdjunctFaculty"
+    kuPersonAffiliation EQ (ignore case) "AdjunctFaculty"
+  -->
+  <group>
+    <group-key>AdjunctFaculty</group-key>
+    <group-name>AdjunctFaculty</group-name>
+    <group-description>Adjunct faculty</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>AdjunctFaculty</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+  
+  <!--
+  Group: "CourtesyFaculty"
+  kuPersonAffiliation EQ (ignore case) "CourtesyFaculty"
+-->
+  <group>
+    <group-key>CourtesyFaculty</group-key>
+    <group-name>CourtesyFaculty</group-name>
+    <group-description>Courtesy faculty</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>CourtesyFaculty</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+  
+  <!--
+    Group: "Emeritus"
+    kuPersonAffiliation EQ (ignore case) "Emeritus"
+  -->
+  <group>
+    <group-key>Emeritus</group-key>
+    <group-name>Emeritus</group-name>
+    <group-description>Emeritus</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>Emeritus</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+  
+  <!--
+    Group: "UnclassifiedAcademicStaff"
+    kuPersonAffiliation EQ (ignore case) "UnclassifiedAcademicStaff"
+  -->
+  <group>
+    <group-key>UnclassifiedAcademicStaff</group-key>
+    <group-name>UnclassifiedAcademicStaff</group-name>
+    <group-description>Unclassified academic staff</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>UnclassifiedAcademicStaff</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+
+  <!--
+    Group: "AdmittedStudent"
+    kuPersonAffiliation EQ (ignore case) "AdmittedStudent"
+  -->
+  <group>
+    <group-key>AdmittedStudent</group-key>
+    <group-name>AdmittedStudent</group-name>
+    <group-description>Admitted student</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>AdmittedStudent</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+  
+  <!--
+    Group: "EnrollingStudent"
+    kuPersonAffiliation EQ (ignore case) "EnrollingStudent"
+  -->
+  <group>
+    <group-key>EnrollingStudent</group-key>
+    <group-name>EnrollingStudent</group-name>
+    <group-description>Enrolling student</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonAffiliation</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>EnrollingStudent</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+  
+  <!--
+    Group: "CommerceMgrAdmin"
+  -->
+  <group>
+    <group-key>CommerceMgrAdmin</group-key>
+    <group-name>CommerceMgrAdmin</group-name>
+    <group-description>Administrators of the CommerceMgr Portlet Settings</group-description>
+    <selection-test>
+      <!-- Uncomment the following test group if a grouper group is created for this admin.                 
+            <test-group>
+                <test>
+                    <attribute-name>isMemberOf</attribute-name>
+                    <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsTester</tester-class>
+                    <test-value>ku:is:it:itsi:portalcommercemgradmin</test-value>   
+                </test>
+            </test-group>
+            -->
+      <test-group>
+        <test>
+          <attribute-name>isMemberOf</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsTester</tester-class>
+          <test-value>cn=itsimembers,ou=groups,dc=ku,dc=edu</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+
+  <!--
+    Group: "HasEmployeeInfo"
+    User has existing human resources ID (i.e., LHrId) OR user is member of cn=hastabexceptions group in LDAP
+  -->
+  <group>
+    <group-key>HasEmployeeInfo</group-key>
+    <group-name>HasEmployeeInfo</group-name>
+    <group-description>Employed in some capacity by KU, will see EmployeeInfo Tab in portal</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonLHrId</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.ValueExistsTester</tester-class>
+          <test-value/>
+        </test>
+      </test-group>
+      <test-group>
+        <test>
+          <attribute-name>isMemberOf</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsTester</tester-class>
+          <test-value>cn=hastabexceptions,ou=groups,dc=ku,dc=edu</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+  
+  <!--
+    Group: "KuAnywhereUsers"
+    Membership is controlled by the LDAP group "cn=kuanywhere_allowed,ou=groups,dc=ku,dc=edu"
+  -->
+  <group>
+    <group-key>KuAnywhereUsers</group-key>
+    <group-name>KuAnywhereUsers</group-name>
+    <group-description>Allowed to use KUAnywhere VPN</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>isMemberOf</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsTester</tester-class>
+          <test-value>cn=kuanywhere_allowed,ou=groups,dc=ku,dc=edu</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+
+  <!--
+    Group: "ParkingAdmin"
+    Is a member of the LDAP group "cn=portalparkingadmin" OR the system integration team group "cn=itsimembers"
+  -->
+  <group>
+    <group-key>ParkingAdmin</group-key>
+    <group-name>ParkingAdmin</group-name>
+    <group-description>Administrators of the Parking (Permits and Citations) Portlet
+      Settings</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>isMemberOf</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsTester</tester-class>
+          <test-value>cn=portalparkingadmin,ou=groups,dc=ku,dc=edu</test-value>
+        </test>
+      </test-group>
+      <test-group>
+        <test>
+          <attribute-name>isMemberOf</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsTester</tester-class>
+          <test-value>cn=itsimembers,ou=groups,dc=ku,dc=edu</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+
+  <!--
+    Group: "PtDExceptionUsers"
+    Is a member of the LDAP group "cn=ptdexceptions", created specifically for users to have access to the 
+    Graduate Ptd Forms portlet
+  -->
+  <group>
+    <group-key>PtDExceptionUsers</group-key>
+    <group-name>PtDExceptionUsers</group-name>
+    <group-description>Graduate PtD Exception Users</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>isMemberOf</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsTester</tester-class>
+          <test-value>cn=ptdexceptions,ou=groups,dc=ku,dc=edu</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+
 <!-- End Group declarations: -->
 
 </Group-Store>
