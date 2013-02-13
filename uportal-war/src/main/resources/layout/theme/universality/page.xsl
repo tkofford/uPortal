@@ -128,7 +128,7 @@
        
       </head>
       
-      <body id="portal" class="up {$FLUID_THEME_CLASS}">
+      <body id="portal" class="up {$FLUID_THEME_CLASS} minHeightAll">
         <div id="portalPage" class="{$LOGIN_STATE} {$PORTAL_VIEW} fl-container-flex">  <!-- Main div for presentation/formatting options. -->
         	<div id="portalPageInner" class="{$PAGE_COLUMN_CLASS} {$SIDEBAR_CLASS} {$FRAGMENT_ADMIN_CLASS}">  <!-- Inner div for additional presentation/formatting options. -->
             <xsl:choose>
@@ -157,7 +157,7 @@
                     </div>
                 </xsl:if>
                 <xsl:apply-templates select="content"/>
-                <xsl:apply-templates select="footer"/>
+                <xsl:call-template name="kuFooter"/>
                 <xsl:if test="$USE_FLYOUT_MENUS='true'">
                   <xsl:call-template name="flyout.menu.scripts"/> <!-- If flyout menus are enabled, writes in necessary Javascript to function. -->
                 </xsl:if>
@@ -472,6 +472,121 @@
   </xsl:template>
   <!-- =========================================== -->
 
+  <xsl:template name="kuFooter">
+	<div id="section-footer" class="section section-footer">
+		<div id="zone-ku-footer-wrapper" class="zone-wrapper zone-ku-footer-wrapper clearfix minHeight175">
+			<div id="zone-ku-footer" class="zone zone-ku-footer clearfix container-12">
+				<div class="grid-3 region region-ku-footer-first" id="region-ku-footer-first">
+					<div class="region-inner region-ku-footer-first-inner">
+						<div
+							class="block block-ku-static block-ku-static-kufooter-logo block-ku-static-ku-static-kufooter-logo odd block-without-title"
+							id="block-ku-static-ku-static-kufooter-logo">
+							<div class="block-inner clearfix">
+	
+								<div class="content clearfix">
+									<a href="http://www.ku.edu/">
+										<img
+											src="//assets.drupal.ku.edu/sites/all/themes/ku_template_2012/images/ku_sig_logo.png"
+											width="167" height="40" alt="KU signature" title="The University of Kansas" />
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="grid-6 region region-ku-footer-second" id="region-ku-footer-second">
+					<div class="region-inner region-ku-footer-second-inner">
+						<div
+							class="block block-ku-static block-ku-static-kufooter-links block-ku-static-ku-static-kufooter-links odd block-without-title"
+							id="block-ku-static-ku-static-kufooter-links">
+							<div class="block-inner clearfix">
+	
+								<div class="content clearfix">
+									<p>
+										<img id="ku_footer_jayhawk"
+											src="//assets.drupal.ku.edu/sites/all/themes/ku_template_2012/images/ku_jayhawk.png"
+											width="56" height="50" alt="Jayhawk icon" />
+									</p>
+									<ul class="inline-list">
+										<li>
+											<a href="http://ku.edu/academics/" title="KU Academics">Academics</a>
+										</li>
+										<li>
+											<a href="http://admissions.ku.edu/" title="KU Admissions">Admissions</a>
+										</li>
+										<li>
+											<a href="http://www.kualumni.org/" title="Alumni information">Alumni</a>
+										</li>
+										<li>
+											<a href="http://www.kuathletics.com/" title="KU Athletics">Athletics</a>
+										</li>
+										<li>
+											<a href="http://www.ku.edu/about/campuses/" title="Campus information for KU">Campuses</a>
+										</li>
+										<li>
+											<a href="http://www.kuendowment.org/" title="Give back through KU Endowment">Giving</a>
+										</li>
+										<li>
+											<a href="http://employment.ku.edu" title="Find employment at KU">Jobs</a>
+										</li>
+									</ul>
+	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="grid-3 region region-ku-footer-third" id="region-ku-footer-third">
+					<div class="region-inner region-ku-footer-third-inner">
+						<div
+							class="block block-ku-static block-ku-static-kufooter-contact block-ku-static-ku-static-kufooter-contact odd block-without-title"
+							id="block-ku-static-ku-static-kufooter-contact">
+							<div class="block-inner clearfix">
+	
+								<div class="content clearfix">
+									<a href="http://www.ku.edu/contact/" title="Contact KU">Contact KU</a>
+									<br/>
+										Lawrence, KS |
+										<a href="http://admissions.ku.edu/visit/maps.shtml" title="KU Maps">Maps</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="grid-12 region region-ku-footer-legal" id="region-ku-footer-legal">
+					<div class="region-inner region-ku-footer-legal-inner">
+						<div
+							class="block block-ku-static block-ku-static-kufooter-legal block-ku-static-ku-static-kufooter-legal odd block-without-title"
+							id="block-ku-static-ku-static-kufooter-legal">
+							<div class="block-inner clearfix">
+	
+								<div class="content clearfix">
+									<p>
+										The University of Kansas
+										<a
+											href="https://documents.ku.edu/policies/IOA/Nondiscrimination.htm">prohibits discrimination</a>
+										on the basis of race, color, ethnicity, religion, sex, national
+										origin, age, ancestry, disability, status as a veteran, sexual
+										orientation, marital status, parental status, gender identity,
+										gender expression and genetic information in the University’s
+										programs and activities. The following person has been
+										designated to handle inquiries regarding the non-discrimination
+										policies: Director of the Office of Institutional Opportunity
+										and Access,
+										<a href="mailto:ioa@ku.edu" style="color:#ccc">IOA@ku.edu</a>
+										, 1246 W. Campus Road, Room 153A, Lawrence, KS, 66045,
+										(785)864-6414, 711 TTY.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+  
+  </xsl:template>
 
   <!-- ========== TEMPLATE: SIDEBAR LOCATION ========== -->
   <!-- =========================================== -->
