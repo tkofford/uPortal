@@ -238,6 +238,16 @@
   background: white;
 }
 
+.noUnderlineLightBlueLink {
+	color: #89b7ff;
+	text-decoration: none;
+}
+
+.noUnderlineLightBlueLink:hover {
+	color: #89b7ff;
+	text-decoration: underline;
+}
+
 .noUnderlineWhiteLink {
 	color: white;
 	text-decoration: none;
@@ -246,6 +256,15 @@
 	color: white;
 	text-decoration: underline;
 }
+
+.minHeight175 {
+	min-height: 175px !important;
+}
+
+.minHeightAll {
+	min-height: 100%;
+}
+
 
 /*====================================*/
 /* Header */

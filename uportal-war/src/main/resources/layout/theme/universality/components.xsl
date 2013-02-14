@@ -154,7 +154,7 @@
           <xsl:variable name="homeUrl">
             <xsl:call-template name="portalUrl"/>
           </xsl:variable>
-	      <a href="{$homeUrl}" class="noUnderlineWhiteLink">
+	      <a href="{$homeUrl}" class="noUnderlineLightBlueLink">
 	        <xsl:attribute name="title">
 	          <xsl:choose>
 	            <!-- Use the Back to Home label for focused view -->
@@ -163,7 +163,7 @@
 	            <xsl:otherwise><xsl:value-of select="upMsg:getMessage('home', $USER_LANG)"/></xsl:otherwise>
 	          </xsl:choose>
 	        </xsl:attribute>
-	        <span class="noUnderlineWhiteLink">
+	        <span class="noUnderlineLightBlueLink">
 	          <xsl:choose>
 	            <!-- Use the Back to Home label for focused view -->
 	            <xsl:when test="//focused"><xsl:value-of select="upMsg:getMessage('back.to.home.long', $USER_LANG)"/></xsl:when>
@@ -196,7 +196,7 @@
             </xsl:call-template>
     	  </xsl:variable>
     	  <a href="{$portletAdminUrl}" title="{upMsg:getMessage('go.to.portlet.manager', $USER_LANG)}">
-          <span class="noUnderlineWhiteLink"><xsl:value-of select="upMsg:getMessage('portlet.manager', $USER_LANG)"/></span>
+          <span class="noUnderlineLightBlueLink"><xsl:value-of select="upMsg:getMessage('portlet.manager', $USER_LANG)"/></span>
         </a>
       </li>
     </xsl:if>
@@ -243,8 +243,8 @@
   -->
   <xsl:template name="portal.page.bar.link.email">
   	<li>
-      <a href="https://mail.ku.edu" title="Check your email online" class="noUnderlineWhiteLink">
-      	<span class="noUnderlineWhiteLink">Email</span>
+      <a href="https://mail.ku.edu" title="Check your email online" class="noUnderlineLightBlueLink">
+      	<span class="noUnderlineLightBlueLink">Email</span>
       </a>
     </li>
   </xsl:template>
@@ -258,8 +258,8 @@
   -->
   <xsl:template name="portal.page.bar.link.blackboard">
   	<li>
-      <a href="https://courseware.ku.edu/" title="Login to Blackboard" class="noUnderlineWhiteLink">
-      	<span class="noUnderlineWhiteLink">Blackboard</span>
+      <a href="https://courseware.ku.edu/" title="Login to Blackboard" class="noUnderlineLightBlueLink">
+      	<span class="noUnderlineLightBlueLink">Blackboard</span>
       </a>
     </li>
   </xsl:template>
@@ -273,8 +273,8 @@
   -->
   <xsl:template name="portal.page.bar.link.enrollpay">
   	<li>
-      <a href="https://sa.ku.edu" title="Login to Enroll &amp; Pay" class="noUnderlineWhiteLink">
-      	<span class="noUnderlineWhiteLink">Enroll &amp; Pay</span>
+      <a href="https://sa.ku.edu" title="Login to Enroll &amp; Pay" class="noUnderlineLightBlueLink">
+      	<span class="noUnderlineLightBlueLink">Enroll &amp; Pay</span>
       </a>
     </li>
   </xsl:template>
