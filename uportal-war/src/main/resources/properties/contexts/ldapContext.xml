@@ -82,10 +82,10 @@
     </bean>
     
     <bean id="defaultLdapContext_target" class="org.springframework.ldap.core.support.LdapContextSource">
-        <property name="url" value="${ldap.url}"/>
-        <property name="base" value="${ldap.baseDn}"/>
-        <property name="userDn" value="${ldap.userName}"/>
-        <property name="password" value="${ldap.password}"/>
+        <property name="url" value="${environment.build.ldap.url}"/>
+        <property name="base" value="${environment.build.ldap.baseDn}"/>
+        <property name="userDn" value="${environment.build.ldap.userName}"/>
+        <property name="password" value="${environment.build.ldap.password}"/>
         <property name="pooled" value="false"/>
         <property name="baseEnvironmentProperties">
             <map>

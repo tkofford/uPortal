@@ -605,6 +605,7 @@
                     <include>properties/rdbm.properties</include>
                     <include>properties/security.properties</include>
                     <include>properties/contexts/userContext.xml</include>
+                    <include>properties/contexts/ldapContext.xml</include>
                 </includes>
             </resource>
             <!-- 
@@ -618,6 +619,7 @@
                     <exclude>properties/rdbm.properties</exclude>
                     <exclude>properties/security.properties</exclude>
                     <exclude>properties/contexts/userContext.xml</exclude>
+                    <exclude>properties/contexts/ldapContext.xml</exclude>
                 </excludes>
             </resource>
             <resource>
