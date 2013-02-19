@@ -299,7 +299,7 @@
  */
 .up table,
 .up table th,
-.up table td {border:none !important;} 
+.up table td {border:none !important; padding:.1em;} 
 .portlet table.portlet-table,
 .portlet table.portlet-table th,
 .portlet table.portlet-table td {border-style:solid !important; border-width:1px !important; border-color:#ccc !important; border-collapse:collapse !important;}
