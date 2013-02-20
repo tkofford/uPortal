@@ -71,6 +71,7 @@
       <member-key>all_admitted_students</member-key>
       <member-key>KuAnywhereUsers</member-key>
       <member-key>HasEmployeeInfo</member-key>
+      <member-key>BlackboardEntitled</member-key>
     </members>
   </group>
 
