@@ -477,6 +477,33 @@
       </test-group>
     </selection-test>
   </group>
+  
+    <!--
+    Group: "BlackboardEntitled"
+    kuPersonBbEntitlement equals "Y"
+    OR kuPersonBbEntitlement equals "Grace"
+  -->
+  <group>
+    <group-key>BlackboardEntitled</group-key>
+    <group-name>BlackboardEntitled</group-name>
+    <group-description>People entitled to use Blackboard</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonBbEntitlement</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>Y</test-value>
+        </test>
+      </test-group>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonBbEntitlement</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>Grace</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
 
   <!--
     Group: "AffiliatedCorporation"
