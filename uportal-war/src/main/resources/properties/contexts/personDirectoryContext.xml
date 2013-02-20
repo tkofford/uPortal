@@ -349,6 +349,9 @@
                 <entry key="kuPersonStuGroups">
                     <value>kuPersonStuGroups</value>
                 </entry>
+                <entry key="kuPersonBbEntitlement">
+                    <value>kuPersonBbEntitlement</value>
+                </entry>
             </map>
         </property>
     </bean>

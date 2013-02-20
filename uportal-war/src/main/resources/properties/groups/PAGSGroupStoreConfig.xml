@@ -71,6 +71,7 @@
       <member-key>all_admitted_students</member-key>
       <member-key>KuAnywhereUsers</member-key>
       <member-key>HasEmployeeInfo</member-key>
+      <member-key>BlackboardEntitled</member-key>
     </members>
   </group>
 
@@ -473,6 +474,33 @@
           <attribute-name>isMemberOf</attribute-name>
           <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsTester</tester-class>
           <test-value>cn=studentathlete,ou=groups,dc=ku,dc=edu</test-value>
+        </test>
+      </test-group>
+    </selection-test>
+  </group>
+  
+    <!--
+    Group: "BlackboardEntitled"
+    kuPersonBbEntitlement equals "Y"
+    OR kuPersonBbEntitlement equals "Grace"
+  -->
+  <group>
+    <group-key>BlackboardEntitled</group-key>
+    <group-name>BlackboardEntitled</group-name>
+    <group-description>People entitled to use Blackboard</group-description>
+    <selection-test>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonBbEntitlement</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>Y</test-value>
+        </test>
+      </test-group>
+      <test-group>
+        <test>
+          <attribute-name>kuPersonBbEntitlement</attribute-name>
+          <tester-class>org.jasig.portal.groups.pags.testers.StringEqualsIgnoreCaseTester</tester-class>
+          <test-value>Grace</test-value>
         </test>
       </test-group>
     </selection-test>
