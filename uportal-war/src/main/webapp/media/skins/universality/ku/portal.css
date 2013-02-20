@@ -289,6 +289,9 @@ table {
 	min-height: 100%;
 }
 
+.kuPortalLinks {
+	float: right;
+}
 
 /*====================================*/
 /* Header */
