@@ -84,11 +84,11 @@
 .up form input[type='text'], .up form input[type='email'], .up form input[type='tel'], .up form input[type='url'], .up form input[type='search'], .up form input[type='password'], .up form select, .up form textarea {
   font-family: serif;
   border: 1px solid #a9a9a9;
-  font-size: 14px;
+  /*font-size: 14px;*/
 }
 .up form input[type='text'], .up form input[type='email'], .up form input[type='tel'], .up form input[type='url'], .up form input[type='search'], .up form input[type='password'], .up form textarea {
   padding: 0.2em 0.4em;
-  line-height: 1.4;
+  /*line-height: 1.4;*/
   background: white;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) inset;
   -moz-border-radius: 0.6em;
@@ -123,6 +123,11 @@
  */
 .fl-theme-mist a, .fl-theme-coal a, .fl-theme-hc a, .fl-theme-rust a, .fl-theme-slate a {
   font-weight: normal;
+  text-decoration: none;
+}
+.fl-theme-mist a:hover, .fl-theme-coal a:hover, .fl-theme-hc a:hover, .fl-theme-rust a:hover, .fl-theme-slate a:hover {
+  font-weight: normal;
+  text-decoration: underline;
 }
 .fl-theme-mist .fl-widget, .fl-theme-coal .fl-widget, .fl-theme-hc .fl-widget, .fl-theme-rust .fl-widget, .fl-theme-slate .fl-widget {
   -moz-border-radius: 7px;
@@ -142,6 +147,17 @@
   *padding: 5px 20px 5px 20px;
 }
 
+h1,h2,h3 {
+	margin: 15px 0 5px 0;
+}
+
+h4 {
+	margin: 10px 0 3px 0;
+}
+
+table {
+	margin-bottom: 0;
+}
 /* 
 ------------------------------------
   jQuery UI overrides.
@@ -181,11 +197,12 @@
 .up {
   /* Global, general styling. */
   font-family: Verdana, sans-serif;
-  background: #a9a9a9;
-  background-image: -moz-linear-gradient(top, #c3c3c3, #8f8f8f);
+  background: white;
+  /*background-image: -moz-linear-gradient(top, #c3c3c3, #8f8f8f);
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #c3c3c3), color-stop(1, #8f8f8f));
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#c3c3c3', EndColorStr='#8f8f8f')";
   background-image: linear-gradient(top, #c3c3c3, #8f8f8f);
+  */
   color: #444444;
 }
 .up h1, .up h2, .up h3, .up h4, .up h5, .up h6 {
@@ -193,16 +210,19 @@
   font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
 }
 .up #portalPage {
-  width: 96%;
+  width: 100%;
   min-width: 960px;
   margin: 0 auto;
 }
 .up #portalPageInner {
   background: white;
+  /*
   border-left: 1px solid #8f8f8f;
   border-right: 1px solid #8f8f8f;
+  */
 }
 .up .button, .up button, .up input[type='submit'], .up input[type='button'] {
+  /*
   border-color: #294d6b;
   background: #4682b4;
   color: white;
@@ -211,8 +231,10 @@
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #4682b4), color-stop(1, #294d6b));
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#4682b4', EndColorStr='#294d6b')";
   background-image: linear-gradient(top, #4682b4, #294d6b);
+  */
 }
 .up .button:hover, .up .button:focus, .up a.button:hover, .up a.button:focus, .up button:hover, .up button:focus, .up input[type='submit']:hover, .up input[type='submit']:focus, .up input[type='button']:hover, .up input[type='button']:focus {
+  /*
   border-color: #294d6b;
   background: #699bc4;
   color: white;
@@ -221,6 +243,7 @@
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #8db3d3), color-stop(1, #294d6b));
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#8db3d3', EndColorStr='#294d6b')";
   background-image: linear-gradient(top, #8db3d3, #294d6b);
+  */
 }
 .up .button:active, .up button:active, .up input[type='submit']:active, .up input[type='button']:active {
   border-color: #294d6b;
@@ -236,6 +259,7 @@
   /* Page body. */
   padding: 2.5em 12px;
   background: white;
+  min-height: 400px;
 }
 
 .noUnderlineLightBlueLink {
@@ -265,6 +289,9 @@
 	min-height: 100%;
 }
 
+.kuPortalLinks {
+	float: right;
+}
 
 /*====================================*/
 /* Header */
@@ -382,10 +409,12 @@
   background: #4682b4;
   color: white;
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.7);
+  /*
   background-image: -moz-linear-gradient(top, #4682b4, #294d6b);
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #4682b4), color-stop(1, #294d6b));
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#4682b4', EndColorStr='#294d6b')";
   background-image: linear-gradient(top, #4682b4, #294d6b);
+  */
   padding: 0.3em 12px;
   -moz-border-radius: 0 0.6em 0.6em 0;
   -webkit-border-top-left-radius: 0;

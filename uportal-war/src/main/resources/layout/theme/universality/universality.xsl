@@ -433,8 +433,9 @@
     <!-- Logo -->
     <xsl:call-template name="logo"/>
     
-    <!-- Web Search -->
+    <!-- Web Search 
     <xsl:call-template name="web.search"/>
+    -->
     
     <!-- Quicklinks
     <xsl:call-template name="quicklinks"/> -->
@@ -649,15 +650,20 @@
    | Template contents can be any valid XSL or XHTML.
   -->
   <xsl:template name="content.top.block">
+  	<div class="kuPortalLinks">
+  		User's Name | KU Anywhere Link | etc.
+  	</div>
+  	
   	<!-- SAMPLE:
     <div id="portalContentTopBlock">
     	<p>CUSTOM CONTENTS.</p>
     </div>
     -->
-    <!-- Tips -->
+    <!-- Tips 
     <div id="portalContentTopBlock">
         <xsl:copy-of select="//channel/parameter[@name = 'role' and @value = 'tips']/parent::*"/>
     </div>
+    -->
   </xsl:template>
   <!-- ================================================= -->
   
