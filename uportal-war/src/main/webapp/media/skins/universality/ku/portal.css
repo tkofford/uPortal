@@ -293,6 +293,10 @@ table {
 	float: right;
 }
 
+.overflowVisible {
+	overflow: visible !important;
+}
+
 /*====================================*/
 /* Header */
 /*====================================*/

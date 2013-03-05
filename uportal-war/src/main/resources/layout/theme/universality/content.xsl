@@ -183,7 +183,7 @@
             </div>
             
             <!-- ****** PORTLET CONTENT ****** -->
-            <div id="portletContent_{@ID}" class="fl-widget-content fl-fix up-portlet-content-wrapper"> <!-- Portlet content container. -->
+            <div id="portletContent_{@ID}" class="overflowVisible fl-widget-content fl-fix up-portlet-content-wrapper"> <!-- Portlet content container. -->
               <div class="up-portlet-content-wrapper-inner">  <!-- Inner div for additional presentation/formatting options. -->
                 <xsl:call-template name="portlet-content"/>
               </div>
