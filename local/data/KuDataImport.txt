@@ -1,0 +1,17 @@
+# Import the KU defined PAGS group "KYouPortalAdmin" into the default "Portal Administrators" group.
+ant data-import -Dfile=local/data/entities/Portal_Administrators.group-membership.xml
+
+# Give the PAGS group "KYouPortalAdmin" the "Admin" layout wich included the "Admin Tools" tab
+ant data-import -Dfile=local/data/entities/Admin.fragment-definition.xml
+
+ant data-import -Dfile=local/data/entities/myku-lo.user.xml
+
+ant data-import -Dfile=local/data/entities/myku-lo.fragment-definition.xml
+
+ant data-import -Dfile=local/data/entities/myku-lo.fragment-layout.xml
+
+ant data-import -Ddir=local/data/fragment-definition
+ant data-import -Ddir=local/data/user
+ant data-import -Ddir=local/data/entities
+ant data-import -Ddir=local/data/fragment-layout
+ant data-import -Ddir=local/data/portlet-definition
