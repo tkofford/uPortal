@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fragment-definition xmlns:dlm="http://org.jasig.portal.layout.dlm.config" script="classpath://org/jasig/portal/io/import-fragment-definition_v3-1.crn">
+    <!-- ======================================================================
+         "Libraries" Tab
+         Audience: Faculty, Staff, Students         
+         ====================================================================== -->
+    <dlm:fragment name='Libraries' ownerID='libraries-lo' precedence='20'>
+        <dlm:audience evaluatorFactory='org.jasig.portal.layout.dlm.providers.GroupMembershipEvaluatorFactory'>
+            <paren mode="OR">
+                <attribute mode="deepMemberOf" name="All Students"/>
+                <attribute mode="deepMemberOf" name='All Faculty'/>
+                <attribute mode="deepMemberOf" name="All Staff"/>
+                <attribute mode="memberOf" name="DefaultUser"/>
+            </paren>
+        </dlm:audience>
+    </dlm:fragment>
+</fragment-definition>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fragment-definition xmlns:dlm="http://org.jasig.portal.layout.dlm.config" script="classpath://org/jasig/portal/io/import-fragment-definition_v3-1.crn">
+    <!-- ======================================================================
+         "Finances" Tab
+         Audience: Faculty, Staff, Students, All Admitted Students
+         Financial resources for all KU portal users
+         ====================================================================== -->
+    <dlm:fragment name='Finances' ownerID='finances-lo' precedence='40'>
+        <dlm:audience evaluatorFactory='org.jasig.portal.layout.dlm.providers.GroupMembershipEvaluatorFactory'>
+            <paren mode="OR">
+                <attribute mode="deepMemberOf" name="All Students"/>
+                <attribute mode="deepMemberOf" name='All Faculty'/>
+                <attribute mode="deepMemberOf" name="All Staff"/>
+                <attribute mode="deepMemberOf" name="All Admitted Students"/>
+                <attribute mode="memberOf" name="DefaultUser"/>
+            </paren>
+        </dlm:audience>
+    </dlm:fragment>
+</fragment-definition>

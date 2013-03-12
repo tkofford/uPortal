@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fragment-definition xmlns:dlm="http://org.jasig.portal.layout.dlm.config" script="classpath://org/jasig/portal/io/import-fragment-definition_v3-1.crn">
+    <!-- ======================================================================
+         "Community" Tab
+         Audience: Students         
+         ====================================================================== -->
+    <dlm:fragment name='Community' ownerID='community-lo' precedence='70'>
+        <dlm:audience evaluatorFactory='org.jasig.portal.layout.dlm.providers.GroupMembershipEvaluatorFactory'>
+            <paren mode="OR">
+                <attribute mode="deepMemberOf" name="All Students"/>
+            </paren>
+        </dlm:audience>
+    </dlm:fragment>
+</fragment-definition>
