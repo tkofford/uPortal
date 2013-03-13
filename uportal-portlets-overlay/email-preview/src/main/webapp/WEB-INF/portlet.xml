@@ -194,7 +194,10 @@
                 <name>allowableAuthenticationServiceKeys</name>
                 <value>cachedPassword</value>
             </preference>
-            
+            <preference>
+                <name>authenticationServiceKey</name>
+                <value>cachedPassword</value>
+            </preference>
             <preference>
                 <name>port</name>
                 <value>993</value>
