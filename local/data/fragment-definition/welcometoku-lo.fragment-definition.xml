@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fragment-definition xmlns:dlm="http://org.jasig.portal.layout.dlm.config" script="classpath://org/jasig/portal/io/import-fragment-definition_v3-1.crn">
+    <!-- ======================================================================
+         "Welcome to KU" Tab
+         Audience: All Admitted Students
+         HOME TAB
+         ====================================================================== -->
+    <dlm:fragment name='Welcome to KU' ownerID='welcometoku-lo' precedence='90'>
+        <dlm:audience evaluatorFactory='org.jasig.portal.layout.dlm.providers.GroupMembershipEvaluatorFactory'>
+            <paren mode="OR">
+                <attribute mode="deepMemberOf" name='All Admitted Students'/>
+            </paren>
+        </dlm:audience>
+    </dlm:fragment>
+</fragment-definition>

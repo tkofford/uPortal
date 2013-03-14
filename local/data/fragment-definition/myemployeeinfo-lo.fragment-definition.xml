@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fragment-definition xmlns:dlm="http://org.jasig.portal.layout.dlm.config" script="classpath://org/jasig/portal/io/import-fragment-definition_v3-1.crn">
+    <!-- ======================================================================
+         "MyEmployeeInfo" Tab
+         Audience: Employees of KU
+         Audience determined by PAGS group, which finds its members according to
+         an LDAP MemberOf value "ku:base:staff:hasemployeeinfotab".  Any user who
+         is employed by KU in any capacity should have this MemberOf value and will
+         see the tab.
+         ====================================================================== -->
+    <dlm:fragment name='MyEmployeeInfo' ownerID='myemployeeinfo-lo' precedence='10'>
+        <dlm:audience evaluatorFactory='org.jasig.portal.layout.dlm.providers.GroupMembershipEvaluatorFactory'>
+            <paren mode="OR">
+                <attribute mode="memberOf" name="HasEmployeeInfo"/>
+            </paren>
+        </dlm:audience>
+    </dlm:fragment>
+</fragment-definition>

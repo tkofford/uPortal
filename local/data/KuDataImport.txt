@@ -3,3 +3,10 @@ ant data-import -Dfile=local/data/entities/Portal_Administrators.group-membershi
 
 # Give the PAGS group "KYouPortalAdmin" the "Admin" layout wich included the "Admin Tools" tab
 ant data-import -Dfile=local/data/entities/Admin.fragment-definition.xml
+
+# Import all files in the given directory
+ant data-import -Ddir=local/data/fragment-definition
+ant data-import -Ddir=local/data/user
+ant data-import -Ddir=local/data/entities
+ant data-import -Ddir=local/data/fragment-layout
+ant data-import -Ddir=local/data/portlet-definition
