@@ -539,8 +539,8 @@
     <!-- Logo -->
     <xsl:call-template name="logo"/>
     
-    <!-- Web Search -->
-    <xsl:call-template name="web.search"/>
+    <!-- Web Search 
+    <xsl:call-template name="web.search"/> -->
     
     <!-- SAMPLE:
     <div id="portalHeaderFocusedBlock">
