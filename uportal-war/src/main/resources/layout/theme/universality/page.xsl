@@ -479,7 +479,7 @@
 				<div class="grid-3 region region-ku-footer-first" id="region-ku-footer-first">
 					<div class="region-inner region-ku-footer-first-inner">
 						<div
-							class="block block-ku-static block-ku-static-kufooter-logo block-ku-static-ku-static-kufooter-logo odd block-without-title"
+							class="block block-ku-static block-ku-static-kufooter-logo block-ku-static-ku-static-kufooter-logo block-without-title"
 							id="block-ku-static-ku-static-kufooter-logo">
 							<div class="block-inner clearfix">
 	
@@ -497,7 +497,7 @@
 				<div class="grid-6 region region-ku-footer-second" id="region-ku-footer-second">
 					<div class="region-inner region-ku-footer-second-inner">
 						<div
-							class="block block-ku-static block-ku-static-kufooter-links block-ku-static-ku-static-kufooter-links odd block-without-title"
+							class="block block-ku-static block-ku-static-kufooter-links block-ku-static-ku-static-kufooter-links block-without-title"
 							id="block-ku-static-ku-static-kufooter-links">
 							<div class="block-inner clearfix">
 	
@@ -539,7 +539,7 @@
 				<div class="grid-3 region region-ku-footer-third" id="region-ku-footer-third">
 					<div class="region-inner region-ku-footer-third-inner">
 						<div
-							class="block block-ku-static block-ku-static-kufooter-contact block-ku-static-ku-static-kufooter-contact odd block-without-title"
+							class="block block-ku-static block-ku-static-kufooter-contact block-ku-static-ku-static-kufooter-contact block-without-title"
 							id="block-ku-static-ku-static-kufooter-contact">
 							<div class="block-inner clearfix">
 	
@@ -556,7 +556,7 @@
 				<div class="grid-12 region region-ku-footer-legal" id="region-ku-footer-legal">
 					<div class="region-inner region-ku-footer-legal-inner">
 						<div
-							class="block block-ku-static block-ku-static-kufooter-legal block-ku-static-ku-static-kufooter-legal odd block-without-title"
+							class="block block-ku-static block-ku-static-kufooter-legal block-ku-static-ku-static-kufooter-legal block-without-title"
 							id="block-ku-static-ku-static-kufooter-legal">
 							<div class="block-inner clearfix">
 	
