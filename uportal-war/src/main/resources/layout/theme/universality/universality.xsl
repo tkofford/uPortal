@@ -650,9 +650,16 @@
    | Template contents can be any valid XSL or XHTML.
   -->
   <xsl:template name="content.top.block">
+	<!-- KU Portal Links Area -->
   	<div class="kuPortalLinks">
-  		User's Name | KU Anywhere Link | etc.
+  		<xsl:value-of select="$userName"/>
+  		<xsl:call-template name="KUAnywhere.link"/>
+        
+        &#160;|&#160;
+		<a href="https://kuit.service-now.com/kb_home.do" target="_blank">KU IT Knowledge Base</a>
   	</div>
+  	
+  	<br/><br/>
   	
   	<!-- SAMPLE:
     <div id="portalContentTopBlock">
@@ -704,7 +711,6 @@
    | Template contents can be any valid XSL or XHTML.
   -->
   <xsl:template name="content.title.block">
-  	
   	<!-- PAGE TITLE -->
   	<xsl:if test="$USE_PAGE_TITLE = 'true'">
     	<xsl:call-template name="page.title"/>
