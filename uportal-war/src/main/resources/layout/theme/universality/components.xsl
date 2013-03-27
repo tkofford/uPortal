@@ -646,4 +646,18 @@
   </xsl:template>
   <!-- ========================================== -->
   
+  
+  <!-- ========== TEMPLATE: KU Anywhere Link ========== -->
+    <!-- =============================================== -->
+    <!--
+        | This template renders the link to KU Anywhere for eligible users.
+    -->
+    <xsl:template name="KUAnywhere.link">
+        <xsl:if test="upGroup:isUserDeepMemberOf($USER_ID, 'pags.KUAnywhere-Users')">
+            &#160;|&#160;
+            <a href="http://start.kuanywhere.ku.edu/">KU Anywhere</a>
+        </xsl:if>
+    </xsl:template>
+    
+    
 </xsl:stylesheet>
