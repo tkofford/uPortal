@@ -425,7 +425,7 @@
    | This template renders the page title.
   -->
   <xsl:template name="page.title.row">
-		<div id="portalPageBodyTitleRow"> <!-- This row contains the page title (label of the currently selected main navigation item), and optionally user layout customization hooks, custom institution content (blocks), or return to dashboard link (if in the focused view). -->
+	<div id="portalPageBodyTitleRow"> <!-- This row contains the page title (label of the currently selected main navigation item), and optionally user layout customization hooks, custom institution content (blocks), or return to dashboard link (if in the focused view). -->
       <div id="portalPageBodyTitleRowContents"> <!-- Inner div for additional presentation/formatting options. -->
         <!-- ****** CONTENT TITLE BLOCK ****** -->
         <xsl:call-template name="content.title.block"/> <!-- Calls a template of institution custom content from universality.xsl. -->
@@ -442,7 +442,7 @@
    | This template renders the page title when focused.
   -->
   <xsl:template name="page.title.row.focused">
-		<div id="portalPageBodyTitleRow"> <!-- This row contains the page title (label of the currently selected main navigation item), and optionally user layout customization hooks, custom institution content (blocks), or return to dashboard link (if in the focused view). -->
+	<div id="portalPageBodyTitleRow"> <!-- This row contains the page title (label of the currently selected main navigation item), and optionally user layout customization hooks, custom institution content (blocks), or return to dashboard link (if in the focused view). -->
       <div id="portalPageBodyTitleRowContents"> <!-- Inner div for additional presentation/formatting options. -->
         <!-- ****** CONTENT TITLE FOCUSED BLOCK ****** -->
         <xsl:call-template name="content.title.focused.block"/> <!-- Calls a template of institution custom content from universality.xsl. -->
