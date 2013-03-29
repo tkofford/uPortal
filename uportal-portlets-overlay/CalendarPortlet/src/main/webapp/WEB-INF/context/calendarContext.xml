@@ -1,0 +1,306 @@
+<!--
+
+    Licensed to Jasig under one or more contributor license
+    agreements. See the NOTICE file distributed with this work
+    for additional information regarding copyright ownership.
+    Jasig licenses this file to you under the Apache License,
+    Version 2.0 (the "License"); you may not use this file
+    except in compliance with the License. You may obtain a
+    copy of the License at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on
+    an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied. See the License for the
+    specific language governing permissions and limitations
+    under the License.
+
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:ehcache="http://www.springmodules.org/schema/ehcache"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+    http://www.springmodules.org/schema/ehcache http://www.springmodules.org/schema/cache/springmodules-ehcache.xsd">
+
+    <!-- User timezone options -->
+    <util:list id="timeZones">
+        <!--<value>America/Halifax</value>-->
+        <value>America/New_York</value>
+        <value>America/Chicago</value>
+        <value>America/Denver</value>
+        <value>America/Phoenix</value>
+        <value>America/Los_Angeles</value>
+        <value>America/Anchorage</value>
+        <value>America/Hawaii</value>        
+    </util:list>
+    
+    
+    <!--
+     | CALENDAR ADAPTER REGISTRATIONS 
+     +-->
+    
+    <!-- Aliases for depricated bean calendar names -->
+    <alias name="httpRssAdapter" alias="edu.yale.its.tp.portlets.calendar.adapter.RssCalendarAdapter"/>
+    <alias name="urlTemplateHttpIcalAdapter" alias="edu.yale.its.tp.portlets.calendar.adapter.HttpICalAdapter"/>
+    <alias name="urlTemplateHttpIcalAdapter" alias="httpIcalAdapter"/>
+    
+    <bean id="templateUrlCreator" class="org.jasig.portlet.calendar.url.StringTemplateUrlCreatorImpl"/> 
+    <bean id="urlTemplateHttpIcalAdapter"
+        class="org.jasig.portlet.calendar.adapter.ConfigurableHttpCalendarAdapter"
+        p:cache-ref="calendarCache" p:urlCreator-ref="templateUrlCreator"
+        p:titleKey="unauthenticated.http.ical.feed" 
+        p:descriptionKey="remote.ical.feed.available.over.http.or.https">
+        <property name="parameters">
+            <list>
+                <bean class="org.jasig.portlet.form.parameter.Parameter"
+                        p:name="url" p:labelKey="feed.url">
+                    <property name="input">
+                        <bean class="org.jasig.portlet.form.parameter.SingleTextParameterInput"
+                            p:display="TEXT" p:defaultValue="http://"/>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+    
+    <!-- Simple un-authenticated adapter for RSS-formatted calendars available via http(s) -->
+    <bean id="httpRssAdapter" 
+        class="org.jasig.portlet.calendar.adapter.ConfigurableHttpCalendarAdapter"
+        p:cache-ref="calendarCache" p:cacheKeyPrefix="rss"
+        p:titleKey="unauthenticated.http.rss.feed" 
+        p:descriptionKey="remote.rss.feed.available.over.http.or.https">
+        <property name="contentProcessor">
+            <bean class="org.jasig.portlet.calendar.processor.RssContentProcessorImpl"/>
+        </property>
+        <property name="parameters">
+            <list>
+                <bean class="org.jasig.portlet.form.parameter.Parameter"
+                        p:name="url" p:labelKey="feed.url">
+                    <property name="input">
+                        <bean class="org.jasig.portlet.form.parameter.SingleTextParameterInput"
+                            p:display="TEXT" p:defaultValue="http://"/>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+    
+    <!-- Simple adapter for iCal files available as files on the server --> 
+    <bean id="fileIcalAdapter" 
+        class="org.jasig.portlet.calendar.adapter.ConfigurableFileCalendarAdapter"
+        p:cache-ref="calendarCache"
+        p:titleKey="unauthenticated.file.ical.feed" 
+        p:descriptionKey="local.ical.feed.available.on.filesystem">
+        <property name="parameters">
+            <list>
+                <bean class="org.jasig.portlet.form.parameter.Parameter"
+                        p:name="file" p:labelKey="file.path">
+                    <property name="input">
+                        <bean class="org.jasig.portlet.form.parameter.SingleTextParameterInput"
+                            p:display="TEXT" p:defaultValue=""/>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <!--
+     | EXCHANGE INTEGRATION SUPPORT
+     |
+     | Uncomment the following section to enable Exchange integration.  You will
+     | also need to modify the Exchange server URL in 
+     | src/main/resources/com/microsoft/exchange/Service.wsdl and uncomment the
+     | reference to the ExchangeInitializationService bean in calendar.xml. 
+     +-->
+    <bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPaths">
+            <list>
+                <value>com.microsoft.exchange.messages</value>
+                <value>com.microsoft.exchange.types</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="destinationProvider" class="org.springframework.ws.client.support.destination.Wsdl11DestinationProvider"
+        p:wsdl="classpath:/com/microsoft/exchange/Services.wsdl"/>
+    <bean id="credentialsProvider" class="org.jasig.portlet.calendar.adapter.exchange.ExchangeWsCredentialsProvider"/>
+    <bean id="httpClient" class="org.jasig.portlet.calendar.adapter.exchange.NtlmAuthHttpClient"
+        p:credentialsProvider-ref="credentialsProvider">
+        <constructor-arg>
+            <bean class="org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager"/>
+        </constructor-arg>
+    </bean>
+    <bean id="webServiceMessageSender" class="org.springframework.ws.transport.http.HttpComponentsMessageSender"
+        p:httpClient-ref="httpClient" p:connectionTimeout="60000" p:readTimeout="60000"
+        p:maxTotalConnections="200">
+    </bean>
+    <bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate"
+        p:destinationProvider-ref="destinationProvider" p:messageSender-ref="webServiceMessageSender"
+        p:marshaller-ref="marshaller" p:unmarshaller-ref="marshaller">
+        <qualifier value="exchange" />
+    </bean>            
+    <bean id="exchangeAdapter" 
+        class="org.jasig.portlet.calendar.adapter.ExchangeCalendarAdapter"
+        p:cache-ref="calendarCache" p:webServiceOperations-ref="webServiceTemplate"
+        p:titleKey="exchange.ws.integration" 
+        p:descriptionKey="exchange.ws.integration"
+        p:emailAttribute="mail">
+    </bean>
+
+    <!-- 
+     | CalDAV adapter for calendars available via the CalDAV protocol.
+     |
+     | For Google the URL format is https://www.google.com/calendar/dav/calid/events.
+     | (see https://developers.google.com/google-apps/calendar/caldav).
+     |
+     | Google-hosted educational accounts:
+     | If users login to portal with a Google-hosted email address, to show the
+     | user's personal calendar the CalDAV URL would be
+     | https://www.google.com/calendar/dav/@USERNAME@/events where www.google.com
+     | would be replaced with the university's web address.  To use
+     | the calDAV adapter you must also uncomment user-attribute password in portlet.xml and
+     | configure uPortal to cache user passwords.  This adapter requires access
+     | to the user's password which is why the URL must be HTTPS instead of HTTP
+     +-->
+    <!--<bean id="calDavAdapter"
+        class="org.jasig.portlet.calendar.adapter.CalDavCalendarAdapter"
+        p:cache-ref="calendarCache"
+        p:titleKey="authenticated.caldav.feed"
+        p:descriptionKey="remote.caldav.feed.over.https">
+        <property name="credentialsExtractor">
+            <bean class="org.jasig.portlet.calendar.credentials.RequestAttributeCredentialsExtractorImpl"
+                    p:usernameAttribute="${userinfo.userid.key}" p:passwordAttribute="${userinfo.password.key}"/>
+        </property>
+        <property name="cacheKeyGenerator">
+            <bean class="org.jasig.portlet.calendar.caching.RequestAttributeCacheKeyGeneratorImpl" p:includePeriod="true"/>
+        </property>
+        <property name="urlCreator">
+            <bean class="org.jasig.portlet.calendar.url.StringTemplateUrlCreatorImpl"/>
+        </property>
+        <property name="parameters">
+            <list>
+                <bean class="org.jasig.portlet.form.parameter.Parameter"
+                      p:name="url" p:labelKey="feed.url" p:example="https://www.google.com/calendar/dav/@USERNAME@/events, must use HTTPS">
+                    <property name="input">
+                        <bean class="org.jasig.portlet.form.parameter.SingleTextParameterInput"
+                              p:display="TEXT" p:defaultValue="https://"/>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+    -->
+
+    <!--
+     | Courses DAO adapter for creating a calendar from the student's course information
+     | for the specified term.  Uses the courses DAO so DAO configuration
+     | should be identical to the courses portlet so both portlets access the same
+     | data source.
+     +-->
+    <!--
+    <bean id="coursesCalendarAdapter"
+        class="org.jasig.portlet.calendar.adapter.CoursesCalendarAdapter"
+        p:cache-ref="calendarCache"
+        p:courseDao-ref="xmlCourseDao"
+        p:titleKey="courses.dao.calendar.feed"
+        p:descriptionKey="courses.dao.calendar.description">
+        <property name="cacheKeyGenerator">
+            <bean class="org.jasig.portlet.calendar.caching.RequestAttributeCacheKeyGeneratorImpl" p:includePeriod="false"/>
+        </property>
+    </bean>
+    -->
+
+    <!--
+     | Mock data for the course calendar adapter.  The java class is from
+     | the courses-portlet-dao jar file.  See dependency in
+     | pom.xml.  This provides sample data for testing.  Replace this data
+     | source with an appropriate data source (typically a duplicate of the
+     | dao configuration in the courses portlet).
+     -->
+    <!--
+    <bean id="xmlCourseDao"
+          class="org.jasig.portlet.courses.dao.xml.MockCoursesDaoImpl"
+          p:mockData="classpath:mock-data/mock-course-term-data.xml"/>
+          -->
+
+    <!--
+     | BASIC AUTHENTICATION SUPPORT
+     |
+     | Uncomment the following section to enable cached password basic authentication 
+     | calendars.  You will also need to uncomment the reference to the 
+     | CachedCredentialsInitializationService bean in calendar.xml.
+     +-->
+    
+    <!-- Sample basic authentication HttpClient iCal feed adapter -->
+    <!--
+    <bean id="basicAuthHttpIcalAdapter" class="org.jasig.portlet.calendar.adapter.ConfigurableHttpCalendarAdapter">
+        <property name="cache" ref="calendarCache"/>
+        <property name="credentialsExtractor">
+            <bean class="org.jasig.portlet.calendar.credentials.RequestAttributeCredentialsExtractorImpl"/>
+        </property>
+        <property name="cacheKeyGenerator">
+            <bean class="org.jasig.portlet.calendar.caching.RequestAttributeCacheKeyGeneratorImpl"/>
+        </property>
+    </bean>
+    -->
+    
+    
+    <!-- 
+     | CAS PROXY AUTHENTICATION
+     |
+     | Uncomment the following section to enable CAS Proxy calendars.  You will also
+     | need to uncomment the reference to the CasProxyInitializationService bean
+     | in calendar.xml.
+     +-->
+    
+    <!-- Sample CAS Proxy authenticated adapter for iCal-formatted calendars over https -->
+    <bean id="casProxyHttpIcalAdapter" 
+        class="org.jasig.portlet.calendar.adapter.ConfigurableHttpCalendarAdapter"
+        p:cache-ref="calendarCache" p:titleKey="proxycas.ical.feed" 
+        p:descriptionKey="remote.ical.feed.available.over.http.or.https">
+        <property name="urlCreator">
+            <bean class="org.jasig.portlet.calendar.url.CasProxyUrlCreatorImpl"
+                p:proxyTicketService-ref="casTicketService"/>
+        </property>
+        <property name="cacheKeyGenerator">
+            <bean class="org.jasig.portlet.calendar.caching.RequestAttributeCacheKeyGeneratorImpl"/>
+        </property>
+        <property name="parameters">
+            <list>
+                <bean class="org.jasig.portlet.form.parameter.Parameter"
+                        p:name="url" p:labelKey="feed.url">
+                    <property name="input">
+                        <bean class="org.jasig.portlet.form.parameter.SingleTextParameterInput"
+                            p:display="TEXT" p:defaultValue="http://"/>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>    
+    
+    <!--
+     | ADDITIONAL CALENDAR ADAPTER CONFIGURATIONS
+     |   
+     | You may register additional calendar adapter configurations or custom
+     | implementations here. 
+     +-->
+    
+    <!-- Oracle calendar-key adapter -->
+    <!--
+    <bean id="calendarKeyAdapter" class="org.jasig.portlet.calendar.adapter.ConfigurableHttpCalendarAdapter">
+        <property name="cache" ref="calendarCache"/>
+        <property name="cacheKeyPrefix" value="calendarKey"/>
+        <property name="urlCreator">
+        <bean class="org.jasig.portlet.calendar.url.CalendarkeyUrlCreatorImpl"/>
+        </property>
+    </bean> 
+    -->
+
+</beans>
