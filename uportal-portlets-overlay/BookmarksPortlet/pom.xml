@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.jasig.portal.portlets-overlay</groupId>
         <artifactId>uportal-portlets-overlay</artifactId>
-        <version>4.0.10</version>
+        <version>4.0.11</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -46,12 +46,8 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <filters>
-                        <filter>${basedir}/../../uportal-war/target/classes/properties/rdbm.properties</filter>
-                      <filter>${basedir}/../../${filters.file}</filter>
+                        <filter>${basedir}/../../${filters.file}</filter>
                     </filters>
-                    <dependentWarExcludes>
-                        WEB-INF/lib/hsqldb-*.jar
-                    </dependentWarExcludes>
                     <webResources>
                         <resource>
                             <directory>${basedir}/src/main/webapp/WEB-INF</directory>
@@ -65,6 +61,7 @@
                             <artifactId>BookmarksPortlet</artifactId>
                             <excludes>
                                 <exclude>WEB-INF/tags/uwfn.tld</exclude>
+                                <exclude>WEB-INF/lib/hsqldb-*.jar</exclude>
                             </excludes>
                         </overlay>
                     </overlays>

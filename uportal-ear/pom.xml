@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.jasig.portal</groupId>
         <artifactId>uportal-parent</artifactId>
-        <version>4.0.10</version>
+        <version>4.0.11</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -26,6 +26,13 @@
         <dependency>
             <groupId>org.jasig.portal.portlets-overlay</groupId>
             <artifactId>BookmarksPortlet</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.jasig.portal.portlets-overlay</groupId>
+            <artifactId>CalendarPortlet</artifactId>
             <version>${project.version}</version>
             <type>war</type>
         </dependency>

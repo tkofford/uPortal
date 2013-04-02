@@ -1,0 +1,98 @@
+<!--
+
+    Licensed to Jasig under one or more contributor license
+    agreements. See the NOTICE file distributed with this work
+    for additional information regarding copyright ownership.
+    Jasig licenses this file to you under the Apache License,
+    Version 2.0 (the "License"); you may not use this file
+    except in compliance with the License. You may obtain a
+    copy of the License at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on
+    an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied. See the License for the
+    specific language governing permissions and limitations
+    under the License.
+
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:util="http://www.springframework.org/schema/util"       
+    xmlns:ehcache="http://www.springmodules.org/schema/ehcache"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd  
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+    <context:component-scan base-package="org.jasig.portlet.calendar.mvc.controller"/>
+    <context:annotation-config/>
+    
+    <!-- Properties configuration -->
+    <bean id="propertyConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+        lazy-init="false">
+        <property name="locations">
+            <list>
+                <value>classpath:datasource.properties</value>
+                <value>classpath:configuration.properties</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="calendarSetDao" class="org.jasig.portlet.calendar.dao.WhitelistFilteringCalendarSetDao">
+        <property name="enclosedCalendarSetDao">
+            <bean class="org.jasig.portlet.calendar.dao.HibernateCalendarSetDao"/>
+        </property>
+    </bean>
+    
+    <bean id="viewSelector" class="org.jasig.portlet.calendar.mvc.ThemeNameViewSelectorImpl"/>
+    
+    <util:list id="initializationServices">
+        
+        <!--
+            Session setup service: this service bean must be first in the list
+        -->
+        <bean class="org.jasig.portlet.calendar.service.SessionSetupInitializationService"
+            p:userToken="${userinfo.userid.key}" p:calendarStore-ref="calendarStore"/>
+
+        <!--
+            Uncomment the following section for MS Exchange calendars
+        -->
+        <bean class="org.jasig.portlet.calendar.adapter.exchange.ExchangeCredentialsInitializationService"
+            p:usernameAttribute="${userinfo.userid.key}" p:passwordAttribute="${userinfo.password.key}"
+            p:ntlmDomain="${ntlm.domain}"/>
+        
+        <!--
+            Uncomment the following section if you are using CAS authenticated calendar adapters.
+        -->
+        <!--bean class="org.jasig.portlet.calendar.service.CasProxyInitializationService"
+            p:proxyTicketService-ref="casTicketService"/-->
+        
+        <!--
+            Uncomment the following section if you are using cached password authenticated calendar adapters.
+        -->
+        <!--
+            <bean class="org.jasig.portlet.calendar.service.CachedCredentialsInitializationService"/>
+        -->
+        
+    </util:list>
+    
+    <util:map id="predefinedEditActions">
+        <!-- Add edit screens for custom calendar adapters -->
+        <!--
+        <entry key="someOtherCalendarAdapter" value="editSomeOtherCalendar"/>
+        -->
+    </util:map>
+    
+    <bean class="org.springframework.web.portlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+        <property name="interceptors"><bean class="org.jasig.portlet.calendar.mvc.MinimizedStateHandlerInterceptor"/></property>
+    </bean>
+    
+</beans>

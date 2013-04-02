@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.jasig.portal</groupId>
         <artifactId>uportal-parent</artifactId>
-        <version>4.0.10</version>
+        <version>4.0.11</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -17,6 +17,7 @@
 
     <modules>
         <module>BookmarksPortlet</module>
+        <module>CalendarPortlet</module>
         <module>cas</module>
         <module>cas-proxy-test-portlet</module>
         <module>email-preview</module>
