@@ -195,7 +195,7 @@
         <pluto.version>2.1.0-M3</pluto.version>
         <portlet-api.version>2.0</portlet-api.version>
         <quartz.version>1.8.4</quartz.version>
-        <resource-server.version>1.0.29</resource-server.version>
+        <resource-server.version>1.0.29</resource-server.version> <!-- Leave this on 1.0.29 for now. We have a custom build using this version number in archiva that includes a version of fluid infusion with a bugfix that takes care of an issue with fluid & prototype. Allan. -->
         <servlet-api.version>2.5</servlet-api.version>
         <slf4j.version>1.7.4</slf4j.version>
         <spring-framework.version>3.1.4.RELEASE</spring-framework.version>
@@ -1253,6 +1253,11 @@
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.13</version>
+                    <!-- 
+                    <configuration>
+                    	<skipTests>true</skipTests>
+                    </configuration>
+                     -->
                 </plugin>
                 <plugin>
                     <artifactId>maven-war-plugin</artifactId>
